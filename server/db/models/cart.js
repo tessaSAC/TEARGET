@@ -23,5 +23,3 @@ module.exports = db.define('cart', {
 
     }
 });
-
-module.exports.belongsTo(user, {as: 'cart'});

@@ -35,5 +35,3 @@ module.exports = db.define('tears', {
 
     }
 });
-
-module.exports.belongsTo(men, {as: 'tears'});
