@@ -7,7 +7,7 @@ module.exports = db.define('cart', {
         type: Sequelize.STRING
     },
     items: {
-        type: Sequelize.ARRAY(Sequelize.TEXT)
+        type: Sequelize.JSON(Sequelize.TEXT)
     },
     total: {
         type: Sequelize.DECIMAL
