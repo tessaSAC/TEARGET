@@ -4,37 +4,37 @@ module.exports = router;
 let db = require('../../../db/_db.js');
 let Tear = require('../../../db/models/tears.js');
 
-router.get('/', function(req, res, next){
+router.get('/', function(request, response, next){
     Tear.findAll()
     .then(function(tears){
-        res.json(tears);
+        response.json(tears);
     })
     .catch(next);
 });
 
-router.get('/:id', function(req, res, next){
-    Tear.findOne({where: {id: req.params.id}})
+router.get('/:id', function(request, response, next){
+    Tear.findOne({where: {id: request.params.id}})
     .then(function(tear){
-        if (!tear) res.status(404).end();
-        res.json(tear);
+        if (!tear) response.status(404).end();
+        response.json(tear);
     })
     .catch(next);
 });
 
-router.get('/:state', function(req, res, next){
-    Tear.findAll({where: {state: req.params.state}})
+router.get('/:state', function(request, response, next){
+    Tear.findAll({where: {state: request.params.state}})
     .then(function(tears){
-        if (!tears) res.status(404).end();
-        res.json(tears);
+        if (!tears) response.status(404).end();
+        response.json(tears);
     })
     .catch(next);
 });
 
-router.get('/:organic', function(req, res, next){
-    Tear.findAll({where: {organic: req.params.state}})
+router.get('/:organic', function(request, response, next){
+    Tear.findAll({where: {organic: request.params.state}})
     .then(function(tears){
-        if (!tears) res.status(404).end();
-        res.json(tears);
+        if (!tears) response.status(404).end();
+        response.json(tears);
     })
     .catch(next);
 });

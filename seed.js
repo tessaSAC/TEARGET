@@ -114,10 +114,10 @@ db.sync({ force: true })
     .then(function () {
         return seedUsers();
     })
-    .then (function(){
+    .then(function(){
         return seedMen();
     })
-    .then (function(){
+    .then(function(){
         return seedTears();
     })
     .then(function () {
