@@ -6,6 +6,9 @@ module.exports = db.define('tears', {
     title: {
         type: Sequelize.STRING
     },
+    // description: {
+    //     type: Sequelize.STRING
+    // },
     state: {
         type: Sequelize.STRING
     },
