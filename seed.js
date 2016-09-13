@@ -23,6 +23,7 @@ var db = require('./server/db');
 var User = db.model('user');
 var Men = db.model('men');
 var Tears = db.model('tears');
+var Cart = db.model('cart');
 
 var Promise = require('sequelize').Promise;
 
@@ -109,6 +110,42 @@ var seedTears = function () {
 
 };
 
+var seedCart = function () {
+
+    var cart = [
+        {
+            items: {tears:
+                {id: 1,
+                 title: 'Tears1',
+                 amount: 1},
+
+                total: '5'
+            }
+        },
+        {
+            items: {tears:
+                {id: 2,
+                 title: 'Tears1',
+                 amount: 3},
+
+                total: '10'
+            }
+        },
+        {
+            items: {tears: {},
+                total: '0'
+            }
+        }
+    ];
+
+    var creatingCarts = cart.map(function (userObj) {
+        return Cart.create(userObj);
+    });
+
+    return Promise.all(creatingCarts);
+
+};
+
 
 db.sync({ force: true })
     .then(function () {
@@ -119,6 +156,9 @@ db.sync({ force: true })
     })
     .then (function(){
         return seedTears();
+    })
+    .then (function(){
+        return seedCart();
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));

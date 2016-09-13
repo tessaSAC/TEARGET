@@ -8,10 +8,9 @@ let Cart = require('./models/cart');
 let Men = require('./models/men');
 let Tears = require('./models/tears');
 
-Cart.belongsTo(User, {as: 'cart'});
-Tears.belongsTo(Men, {as: 'tears'});
+Cart.belongsTo(User, {as: 'user'});
 
-Men.hasMany(Tears, {as: 'manId'});
+Men.hasMany(Tears, {as: 'man'});
 
 
 // if we had more models, we could associate them in this file
