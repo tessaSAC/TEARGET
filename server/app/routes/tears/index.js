@@ -2,7 +2,7 @@
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
 let db = require('../../../db/_db.js');
-let Tear = db.model('tear');
+let Tear = require('../../../db/models/tears.js');
 
 router.get('/', function(req, res, next){
     Tear.findAll()
