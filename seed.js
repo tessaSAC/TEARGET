@@ -126,7 +126,7 @@ var seedCart = function () {
             items: {tears:
                 {id: 2,
                  title: 'Tears1',
-                 amount: 3},
+                 amount: 4},
 
                 total: '10'
             }
