@@ -28,4 +28,5 @@ router.get('/:id/tears', function(res, req, next){
         if (!tears) res.status(404).end();
         res.json(tears);
     })
+    .catch(next);
 });

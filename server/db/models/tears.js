@@ -3,12 +3,12 @@ var db = require('../_db');
 var men = require('men');
 
 module.exports = db.define('tears', {
-    name: {
+    title: {
         type: Sequelize.STRING
     },
-    description: {
-        type: Sequelize.STRING
-    },
+    // description: {
+    //     type: Sequelize.STRING
+    // },
     state: {
         type: Sequelize.STRING
     },
