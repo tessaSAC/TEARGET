@@ -11,7 +11,6 @@ router.use('/tears', require('./tears'));
 router.use('/men', require('./men'));
 router.use('/cart', require('./cart'));
 
-
 // Make sure this is after all of
 // the registered routes!
 router.use(function (request, response) {
