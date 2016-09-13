@@ -1,32 +1,33 @@
 const express = require('express'),
 	  router = express.Router(),
-	  User = require('./models/user'),
-	  Cart = db.model('cart');
+	  User = require('../../../db/models/user'),
+	  Cart = require('../../../db/models/cart');
+
 let userId;
 
-Cart.belongsTo(User, {as: 'cart'});
+
+// router.use('/:userId', function(request, response, next) {
+// 	if (request.params.userId) userId = request.params.userId;
+// 	else throw Error;
+// });
 
 
+router.get('/:userId', function(request, response, next) {
+	let userId = request.params.userId;
 
-router.use('/', function(request, response, next) {
-	if (request.params.userId) userId = request.params.userId;
-	else throw Error;
-});
-
-
-
-router.get('/', function(request, response, next) {
-	if (userId) {
-		return User.findOne({
-			where: { id: userId }
+	User.findOne({
+		where: { id: userId }
+	})
+	.then(function(user) {
+		Cart.findOne({
+			where: {id: user.cartId}
 		})
-		.then(function(findingCart) {
-			response.send(user.cart);
-		});
-	}
-	else response.status(404).send("User not found");
+		.then(function(cart){
+			response.json(cart);
+		})
+	})
+	.catch(next);
 });
-
 
 
 router.post('/:itemName', function(request, response, next) {
@@ -66,3 +67,5 @@ router.delete('/:itemToDelete', function(request, response, next) {
 		else response.status(404).send("Item not found");
 	});
 });
+
+module.exports = router;

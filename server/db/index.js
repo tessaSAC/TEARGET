@@ -8,7 +8,8 @@ let Cart = require('./models/cart');
 let Men = require('./models/men');
 let Tears = require('./models/tears');
 
-Cart.belongsTo(User, {as: 'user'});
+// Cart.belongsTo(User, {as: 'user'});
+User.belongsTo(Cart, {as: 'cart'});
 
 Men.hasMany(Tears, {as: 'man'});
 
