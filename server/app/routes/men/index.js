@@ -1,9 +1,9 @@
 'use strict'
-var router = requestuire('express').Router(); // eslint-disable-line new-cap
+var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
-let db = requestuire('../../../db/_db.js')
-let Men = requestuire('../../../db/models/men.js');
-let Tear = requestuire('../../../db/models/tears.js');
+let db = require('../../../db/_db.js')
+let Men = require('../../../db/models/men.js');
+let Tear = require('../../../db/models/tears.js');
 
 router.get('/', function(request, response, next){
     Men.findAll()
