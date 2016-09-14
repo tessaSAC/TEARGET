@@ -14,6 +14,16 @@ module.exports = function (db) {
     app.use('/api', require('./routes'));
 
 
+
+    // ROUTES USERS TO THEIR CARTS
+    app.param('userId', function (request, response, next, id) {
+        request.body.userId = parseInt(id, 10);
+        next();
+    });
+
+    router.use('/:userId/cart', cart);
+
+
     /*
      This middleware will catch any URLs resembling a file extension
      for example: .js, .html, .css

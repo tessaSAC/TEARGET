@@ -5,14 +5,14 @@ const express = require('express'),
 
 let userId;
 
-// router.use('/:userId', function(request, response, next) {
-// 	if (request.params.userId) userId = request.params.userId;
-// 	else throw Error;
-// });
+router.use('/:userId', function(request, response, next) {
+	if (request.params.userId) userId = request.params.userId;
+	else throw Error;
+});
 
 
 router.get('/:userId', function(request, response, next) {
-	let userId = request.params.userId;
+	// let userId = request.params.userId;
 
 	User.findOne({
 		where: { id: userId }
