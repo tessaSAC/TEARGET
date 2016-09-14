@@ -5,12 +5,12 @@ var Sequelize = require('sequelize');
 
 var db = require('../../../server/db');
 
-var User = db.model('user');
+var User = db.User;
 
 describe('User model', function () {
 
     beforeEach('Sync DB', function () {
-       return db.sync({ force: true });
+       return db.db.sync({ force: true });
     });
 
     describe('password encryption', function () {

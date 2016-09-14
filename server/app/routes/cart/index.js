@@ -49,7 +49,7 @@ router.post('/:itemName', function(request, response, next) {
 			// IF PRODUCT NOT IN CART ADD ONE TO CART
 			if (!isInCart) findingCart[product] = 1;
 
-		};
+		}
 	});
 });
 
