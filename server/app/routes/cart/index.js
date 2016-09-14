@@ -5,7 +5,6 @@ const express = require('express'),
 
 let userId;
 
-
 // router.use('/:userId', function(request, response, next) {
 // 	if (request.params.userId) userId = request.params.userId;
 // 	else throw Error;
@@ -29,6 +28,8 @@ router.get('/:userId', function(request, response, next) {
 	.catch(next);
 });
 
+
+// findOrCreate - make a cart if the user doesn't have one already
 
 router.post('/:itemName', function(request, response, next) {
 	return Cart.findOne({
