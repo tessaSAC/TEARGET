@@ -1,8 +1,8 @@
 'use strict'
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
-let db = require('../../../db/_db.js');
-let Tear = require('../../../db/models/tears.js');
+let db = require('../../../db');
+let Tear = db.model('tear');
 
 router.get('/', function(request, response, next){
     Tear.findAll()

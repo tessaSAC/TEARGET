@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../_db');
 
-module.exports = db.define('men', {
+module.exports = db.define('man', {
     name: {
         type: Sequelize.STRING
     },
