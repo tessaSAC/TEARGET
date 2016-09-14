@@ -1,12 +1,12 @@
 'use strict'
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
-let db = require('../../../db/_db.js')
-let Men = require('../../../db/models/men.js');
-let Tear = require('../../../db/models/tears.js');
+let db = require('../../../db')
+let Man = db.model('man')
+let Tear = db.model('tear')
 
 router.get('/', function(request, response, next){
-    Men.findAll()
+    Man.findAll()
     .then(function(men){
         response.json(men);
     })
@@ -14,7 +14,7 @@ router.get('/', function(request, response, next){
 });
 
 router.get('/:id', function(request, response, next){
-    Men.findOne({ where: {id: request.params.id}})
+    Man.findOne({ where: {id: request.params.id}})
     .then(function(man){
         if (!man) response.status(404).end();
         response.json(man);

@@ -6,7 +6,7 @@ const supertest = require('supertest');
 const fs = require('fs');
 
 describe('Men Route', function(){
-    let app, Men, agent, man, Tears, tear ;
+    let app, Man, agent, man, Tear, tear ;
 
     let menInfo = {
         name: 'Abe',
@@ -19,22 +19,22 @@ describe('Men Route', function(){
         organic: 'true',
         amount_left: 6,
         size: 4,
-        price: 18
+        price: 18,
     };
 
     beforeEach('Sync DB', function(){
-        return db.db.sync({force: true});
+        return db.sync({force: true});
     });
 
     beforeEach('Create app and agent', function () {
-        app = require('../../../server/app')(db.db);
-        Men = db.Men;
-        Tears = db.Tears;
+        app = require('../../../server/app')(db);
+        Man = db.model('man');
+        Tear = db.model('tear');
         agent = supertest.agent(app);
     });
 
         beforeEach('Create a tear', function(done) {
-        return Tears.create(tearInfo).then(function(createdTear){
+        return Tear.create(tearInfo).then(function(createdTear){
         
             tear = createdTear;
             done();
@@ -43,7 +43,7 @@ describe('Men Route', function(){
     });
 
         beforeEach('Create a man', function(done) {
-        return Men.create(menInfo).then(function(createdMan){
+        return Man.create(menInfo).then(function(createdMan){
             
             return createdMan.addTear(tear);
         })
@@ -76,8 +76,8 @@ describe('Men Route', function(){
     it('should get back an array of tears belonging to specified Man ', function(done){
         agent.get('/api/men/' + man.id + '/tears').expect(200).end(function(err, response){
             if (err) return done(err);
-            console.log(response.body);
-            expect(response.body.id).to.equal(tear.id);
+            console.log(response.body.id);
+            expect(response.body[0].id).to.equal(tear.id);
             done();
         });
     });

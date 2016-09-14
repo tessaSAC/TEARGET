@@ -5,8 +5,8 @@ const expect = require('chai').expect;
 const supertest = require('supertest');
 const fs = require('fs');
 
-describe('Tears Route', function(){
-    let app, Tears, agent, tear;
+describe('Tear Route', function(){
+    let app, Tear, agent, tear;
 
     let tearInfo = {
         title: 'Tear 1',
@@ -18,17 +18,17 @@ describe('Tears Route', function(){
     };
 
     beforeEach('Sync DB', function(){
-        return db.db.sync({force: true});
+        return db.sync({force: true});
     });
 
     beforeEach('Create app and agent', function () {
-        app = require('../../../server/app')(db.db);
-        Tears = db.Tears
+        app = require('../../../server/app')(db);
+        Tear = db.model('tear');
         agent = supertest.agent(app);
     });
 
     beforeEach('Create a tear', function(done) {
-        return Tears.create(tearInfo).then(function(createdTear){
+        return Tear.create(tearInfo).then(function(createdTear){
             tear = createdTear;
             done();
         }).catch(done);
