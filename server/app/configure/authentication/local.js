@@ -26,6 +26,16 @@ module.exports = function (app, db) {
             .catch(done);
     };
 
+
+    var makeUser = function(user){
+
+        return User.create(
+            user
+        )
+        .catch(function(){});
+
+    }
+
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
     // A POST /login route is created to handle login.
@@ -52,6 +62,42 @@ module.exports = function (app, db) {
 
         };
 
+        passport.authenticate('local', authCb)(req, res, next);
+
+    });
+
+    app.post('/signup', function (req, res, next) {
+
+        var authCb = function (err, user) {
+
+            if (err) return next(err);
+
+            if (user) {
+                var error = new Error('User already exsists.');
+                error.status = 401;
+                return next(error);
+            }
+
+            else {
+                user = req.body;
+                makeUser(user)
+                .then(function(user){
+                    req.logIn(user, function (loginErr) {
+                        if (loginErr) return next(loginErr);
+                        // We respond with a response object that has user with _id and email.
+                        res.status(200).send({
+                            user: user.sanitize()
+                        });
+                    });
+
+                })
+
+
+            }
+
+        };
+
+        // console.log("THIS IS THE SIGNUP STUFF", req.body);
         passport.authenticate('local', authCb)(req, res, next);
 
     });
