@@ -29,30 +29,23 @@ module.exports = function (app, db) {
 
 
     var makeUser = function(user){
+
         return Cart.create()
         .then(function(cart){
-           return User.create(user, {include: [cart]})
-            .then(function(user){
-                console.log("USER INSIDE :", user)
-                return user;
+
+            return User.create(user)
+            .then (function(user){
+
+                return user.addCart(cart)
+                // .then (function(user2){
+                //     return user2;
+                // })
             })
+
         })
-        .catch(function(){});    
-        }
-        
+        .catch(console.error);
 
-    // var makeCart = function(user){
-    //     console.log("IN MAKE CART")
-    //     return Cart.create()
-    //     .then(function(cart){
-    //         console.log("NEWLY MADE CART:", cart);
-    //         console.log("USER BEFORE", user);
-    //          return user.addCart(cart);
-
-            
-    //     })
-    //     .catch(function(){});
-    // }
+    }     
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
@@ -100,7 +93,7 @@ module.exports = function (app, db) {
                 user = req.body;
                 makeUser(user)
                 .then(function(user){
-                    console.log("This is a user:", user);
+                    
                     req.logIn(user, function (loginErr) {
                         if (loginErr) return next(loginErr);
                         // We respond with a response object that has user with _id and email.
