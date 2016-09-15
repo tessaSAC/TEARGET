@@ -34,18 +34,15 @@ module.exports = function (app, db) {
         .then(function(cart){
 
             return User.create(user)
-            .then (function(user){
+            .then(function(user2){
 
-                return user.addCart(cart)
-                // .then (function(user2){
-                //     return user2;
-                // })
+                return user2.addCart(cart)
             })
 
         })
         .catch(console.error);
 
-    }     
+    }
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
@@ -64,8 +61,8 @@ module.exports = function (app, db) {
 
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
+                // console.log("THIS IS LSOTRAGE", localStorage);
                 if (loginErr) return next(loginErr);
-                // We respond with a response object that has user with _id and email.
                 res.status(200).send({
                     user: user.sanitize()
                 });
@@ -76,6 +73,7 @@ module.exports = function (app, db) {
         passport.authenticate('local', authCb)(req, res, next);
 
     });
+
 
     app.post('/signup', function (req, res, next) {
 
@@ -92,11 +90,9 @@ module.exports = function (app, db) {
             else {
                 user = req.body;
                 makeUser(user)
-                .then(function(user){
-                    
-                    req.logIn(user, function (loginErr) {
+                .then(function(user2){
+                        req.logIn(user2, function (loginErr) {
                         if (loginErr) return next(loginErr);
-                        // We respond with a response object that has user with _id and email.
                         res.status(200).send({
                             user: user.sanitize()
                         });

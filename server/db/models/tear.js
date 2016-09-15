@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
 var db = require('../_db');
-var man = require('./man');
 
 module.exports = db.define('tear', {
     title: {
@@ -27,7 +26,7 @@ module.exports = db.define('tear', {
 }, {
     instanceMethods: {
         discription: function(){
-            return this.state + " " + this.organic + "tears";
+            return this.state + ' ' + this.organic + 'tears';
         }
     },
     classMethods: {

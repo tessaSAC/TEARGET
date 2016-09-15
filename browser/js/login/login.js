@@ -8,10 +8,11 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Session) {
 
     $scope.login = {};
     $scope.error = null;
+
 
     $scope.sendLogin = function (loginInfo) {
 
@@ -19,10 +20,22 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
         AuthService.login(loginInfo).then(function () {
             $state.go('home');
-        }).catch(function () {
+        })
+        .catch(function () {
             $scope.error = 'Invalid login credentials.';
         });
 
+            localStorage.setItem('DOG', '' + Session.user);
     };
+
+    // localStorage.setItem('DOG', '' + Session.user);
+
+    // let userID = $cookie.get(sid);
+    // alert(userID);
+    // $http.get('/cart/?user=' + userID)
+    // .then(function(cart){
+    //     if (cart) angular.copy(cart.data, localStorage);
+    //     return localStorage;
+    // })
 
 });
