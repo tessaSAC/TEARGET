@@ -9,6 +9,10 @@ module.exports = db.define('tear', {
     // description: {
     //     type: Sequelize.STRING
     // },
+    photo: {
+        type: Sequelize.STRING
+    },
+
     state: {
         type: Sequelize.STRING
     },
