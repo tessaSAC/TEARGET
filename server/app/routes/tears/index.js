@@ -12,29 +12,36 @@ router.get('/', function(request, response, next){
     .catch(next);
 });
 
+router.param('id', function(request, response, next, id){
+    Tear.findById(id)
+        .then(function(tear) {
+            if (!tear) response.status(404).send();
+            request.tearById = tear;
+            next();
+        })
+        .catch(next);
+});
+
 router.get('/:id', function(request, response, next){
-    Tear.findOne({where: {id: request.params.id}})
-    .then(function(tear){
-        if (!tear) response.status(404).end();
-        response.json(tear);
-    })
-    .catch(next);
+   response.send(request.tearById);
 });
 
-router.get('/:state', function(request, response, next){
-    Tear.findAll({where: {state: request.params.state}})
-    .then(function(tears){
-        if (!tears) response.status(404).end();
-        response.json(tears);
-    })
-    .catch(next);
-});
+//NEED TO FIGURE OUT QUERY STRING PARAMS FOR THIS!!!!
 
-router.get('/:organic', function(request, response, next){
-    Tear.findAll({where: {organic: request.params.state}})
-    .then(function(tears){
-        if (!tears) response.status(404).end();
-        response.json(tears);
-    })
-    .catch(next);
-});
+// router.get('/', function(request, response, next){
+//     Tear.findAll({where: {state: request.params.state}})
+//     .then(function(tears){
+//         if (!tears) response.status(404).end();
+//         response.json(tears);
+//     })
+//     .catch(next);
+// });
+
+// router.get('/:organic', function(request, response, next){
+//     Tear.findAll({where: {organic: request.params.state}})
+//     .then(function(tears){
+//         if (!tears) response.status(404).end();
+//         response.json(tears);
+//     })
+//     .catch(next);
+// });

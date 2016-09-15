@@ -13,13 +13,18 @@ router.get('/', function(request, response, next){
     .catch(next);
 });
 
+router.param('id', function (request, response, next, id){
+    Man.findById(id)
+        .then(function (man){
+            if (!man) response.status(404).send();
+            request.manById = man;
+            next();
+        })
+        .catch(next);
+})
+
 router.get('/:id', function(request, response, next){
-    Man.findOne({ where: {id: request.params.id}})
-    .then(function(man){
-        if (!man) response.status(404).end();
-        response.json(man);
-    })
-    .catch(next);
+    response.send(request.manById)
 });
 
 router.get('/:id/tears', function(request, response, next){
