@@ -36,7 +36,7 @@ xdescribe('Members Route', function () {
 
 	});
 
-	xdescribe('Authenticated request', function () {
+	describe('Authenticated request', function () {
 
 		var loggedInAgent;
 
@@ -56,7 +56,7 @@ xdescribe('Members Route', function () {
 			loggedInAgent.post('/login').send(userInfo).end(done);
 		});
 
-		it('should get with 200 response and with an array as the body', function (done) {
+		xit('should get with 200 response and with an array as the body', function (done) {
 			loggedInAgent.get('/api/members/secret-stash').expect(200).end(function (err, response) {
 				if (err) return done(err);
 				expect(response.body).to.be.an('array');

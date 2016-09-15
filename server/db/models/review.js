@@ -6,17 +6,20 @@ module.exports = db.define('review', {
         type: Sequelize.STRING
     },
 
-    rating:{
+    rating: {
         type: Sequelize.INTEGER
     },
-    
+
     text: {
         type: Sequelize.TEXT
     },
-    
+
+    date: {
+        type: Sequelize.DATEONLY
+    }
 }, {
     instanceMethods: {
-       
+
     },
     classMethods: {
 

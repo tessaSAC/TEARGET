@@ -14,10 +14,10 @@ module.exports = db.define('tear', {
     },
 
     state: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('happy', 'sad', 'angry')
     },
     organic: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
     },
     amount_left: {
         type: Sequelize.INTEGER
@@ -30,8 +30,8 @@ module.exports = db.define('tear', {
     }
 }, {
     instanceMethods: {
-        discription: function(){
-            return this.state + " " + this.organic + "tears";
+        description: function(){
+            return (this.state + ' ' + this.organic + 'tears');
         }
     },
     classMethods: {
