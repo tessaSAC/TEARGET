@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ProductsCtl', function($scope, $state, ProductFactory){
+app.controller('ProductsCtrl', function($scope, $state, ProductFactory){
     ProductFactory.getAll()
     .then(function(products){
         $scope.products = products;
