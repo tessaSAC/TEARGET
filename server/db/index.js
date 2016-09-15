@@ -10,6 +10,7 @@ let Tear = require('./models/tear');
 
 // Cart.belongsTo(User, {as: 'user'});
 Cart.belongsTo(User);
+User.hasMany(Cart);
 
 Man.hasMany(Tear);
 

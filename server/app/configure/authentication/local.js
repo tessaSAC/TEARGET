@@ -29,30 +29,35 @@ module.exports = function (app, db) {
 
 
     var makeUser = function(user){
+
         return Cart.create()
         .then(function(cart){
-           return User.create(user, {include: [cart]})
-            .then(function(user){
-                console.log("USER INSIDE :", user)
-                return user;
+
+            return User.create(user)
+            .then (function(user){
+
+                return user.addCart(cart)
+                .then (function(user2){
+                    return user2;
+                })
             })
+
         })
-        .catch(function(){});    
-        }
-        
+        .catch(console.error);
 
-    // var makeCart = function(user){
-    //     console.log("IN MAKE CART")
-    //     return Cart.create()
-    //     .then(function(cart){
-    //         console.log("NEWLY MADE CART:", cart);
-    //         console.log("USER BEFORE", user);
-    //          return user.addCart(cart);
+        // let dbCart = Cart.build();
+        // let dbUser = User.build(user, {include: [
 
-            
-    //     })
-    //     .catch(function(){});
-    // }
+        //         {model: Cart, dbCart}
+
+        //     ]});
+
+        // return dbCart.save()
+        // .then(function(){
+        //     return dbUser.save();
+        // })
+
+    }     
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
