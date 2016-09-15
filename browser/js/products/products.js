@@ -19,28 +19,45 @@ app.factory('ProductFactory', function($http){
         $http.get('/api/tears')
         .then( function(response){
             return response.data;
-        });        
+        });
+    };        
     var getOneTear = function(tearId){
         $http.get('/api/tears/' + tearId)
         .then( function(response){
             return response.data
         });
+    };
     var getManTears = function(manId){
         $http.get('/api/man/' + manId + '/tears')
         .then( function(response){
             return response.data
         });
+    };
     var getStateTears = function(state){
         $http.get('/api/tears/' + state)
         .then( function(response){
             return response.data
         });
+    };
     var getOrganicTears = function(organic){
         $http.get('/api/tears' + organic)
         .then( function(response){
             return response.data
         });
+    };
+    var getManbyId = function(id){
+        $http.get('/api/men/' + id)
+        .then( function(response){
+            return response.data
+        })
     }
-    }
-    }
+    
+     return {
+        getAll: getAll,
+        getOneTear: getOneTear,
+        getManTears: getManTears,
+        getStateTears: getStateTears,
+        getOrganicTears: getOrganicTears
+    };
+
 });
