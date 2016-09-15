@@ -37,25 +37,13 @@ module.exports = function (app, db) {
             .then (function(user){
 
                 return user.addCart(cart)
-                .then (function(user2){
-                    return user2;
-                })
+                // .then (function(user2){
+                //     return user2;
+                // })
             })
 
         })
         .catch(console.error);
-
-        // let dbCart = Cart.build();
-        // let dbUser = User.build(user, {include: [
-
-        //         {model: Cart, dbCart}
-
-        //     ]});
-
-        // return dbCart.save()
-        // .then(function(){
-        //     return dbUser.save();
-        // })
 
     }     
 
@@ -105,7 +93,7 @@ module.exports = function (app, db) {
                 user = req.body;
                 makeUser(user)
                 .then(function(user){
-                    console.log("This is a user:", user);
+                    
                     req.logIn(user, function (loginErr) {
                         if (loginErr) return next(loginErr);
                         // We respond with a response object that has user with _id and email.
