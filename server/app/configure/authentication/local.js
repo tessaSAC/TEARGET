@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 module.exports = function (app, db) {
 
     var User = db.model('user');
+    var Cart = db.model('cart')
 
     // When passport.authenticate('local') is used, this function will receive
     // the email and password to run the actual authentication logic.
@@ -28,13 +29,30 @@ module.exports = function (app, db) {
 
 
     var makeUser = function(user){
+        return Cart.create()
+        .then(function(cart){
+           return User.create(user, {include: [cart]})
+            .then(function(user){
+                console.log("USER INSIDE :", user)
+                return user;
+            })
+        })
+        .catch(function(){});    
+        }
+        
 
-        return User.create(
-            user
-        )
-        .catch(function(){});
+    // var makeCart = function(user){
+    //     console.log("IN MAKE CART")
+    //     return Cart.create()
+    //     .then(function(cart){
+    //         console.log("NEWLY MADE CART:", cart);
+    //         console.log("USER BEFORE", user);
+    //          return user.addCart(cart);
 
-    }
+            
+    //     })
+    //     .catch(function(){});
+    // }
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
@@ -82,6 +100,7 @@ module.exports = function (app, db) {
                 user = req.body;
                 makeUser(user)
                 .then(function(user){
+                    console.log("This is a user:", user);
                     req.logIn(user, function (loginErr) {
                         if (loginErr) return next(loginErr);
                         // We respond with a response object that has user with _id and email.
@@ -89,17 +108,15 @@ module.exports = function (app, db) {
                             user: user.sanitize()
                         });
                     });
+            })
+        }
 
-                })
-
-
-            }
-
-        };
+        } // auth
 
         // console.log("THIS IS THE SIGNUP STUFF", req.body);
         passport.authenticate('local', authCb)(req, res, next);
 
     });
 
-};
+}
+
