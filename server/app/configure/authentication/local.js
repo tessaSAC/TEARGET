@@ -34,7 +34,7 @@ module.exports = function (app, db) {
         .then(function(cart){
 
             return User.create(user)
-            .then (function(user){
+            .then(function(user){
 
                 return user.addCart(cart)
                 // .then (function(user2){
@@ -45,7 +45,7 @@ module.exports = function (app, db) {
         })
         .catch(console.error);
 
-    }     
+    }
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
@@ -93,7 +93,7 @@ module.exports = function (app, db) {
                 user = req.body;
                 makeUser(user)
                 .then(function(user){
-                    
+
                     req.logIn(user, function (loginErr) {
                         if (loginErr) return next(loginErr);
                         // We respond with a response object that has user with _id and email.

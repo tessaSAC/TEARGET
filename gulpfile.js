@@ -1,4 +1,4 @@
-/* global require process */
+/* global require process __dirname console */
 // All used modules.
 var gulp = require('gulp');
 var babel = require('gulp-babel');

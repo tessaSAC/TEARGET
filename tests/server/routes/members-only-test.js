@@ -1,3 +1,4 @@
+/*global describe beforeEach it */
 // Instantiate all models
 var expect = require('chai').expect;
 

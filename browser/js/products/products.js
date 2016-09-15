@@ -45,7 +45,7 @@ app.factory('ProductFactory', function($http){
             return response.data
         });
     };
-    var getManbyId = function(id){
+    var getManById = function(id){
         $http.get('/api/men/' + id)
         .then( function(response){
             return response.data
@@ -57,7 +57,8 @@ app.factory('ProductFactory', function($http){
         getOneTear: getOneTear,
         getManTears: getManTears,
         getStateTears: getStateTears,
-        getOrganicTears: getOrganicTears
+        getOrganicTears: getOrganicTears,
+        getManById: getManById
     };
 
 });

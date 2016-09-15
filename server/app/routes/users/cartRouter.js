@@ -1,7 +1,7 @@
-const express = require('express'),
-	  router = express.Router(),
-	  User = require('./models/user'),
-	  Cart = db.model('cart');
+const express = require('express')
+const router = express.Router()
+const User = require('./models/user')
+const Cart = db.model('cart')
 let userId;
 
 Cart.belongsTo(User, {as: 'cart'});

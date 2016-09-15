@@ -1,4 +1,4 @@
-/*
+/* global require process console
 
 This seed file is only a placeholder. It should be expanded and altered
 to fit the development of your application.
@@ -157,7 +157,7 @@ db.sync({ force: true })
     .then(function(){
         return seedTears();
     })
-    .then (function(){
+    .then(function(){
         return seedCart();
     })
     .then(function () {

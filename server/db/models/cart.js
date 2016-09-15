@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
 var db = require('../_db');
-var user = require('./user');
 
 module.exports = db.define('cart', {
     items: {

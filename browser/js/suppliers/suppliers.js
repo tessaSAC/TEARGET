@@ -23,9 +23,13 @@ app.factory('SupplierFactory', function($http){
         });
     };
     var getOneMan = function(id){
-        $http.get('/api/men/id')
+        $http.get('/api/men/' + id)
         .then( function(response){
             return response.data;
         })
+    }
+    return {
+        getAll: getAll,
+        getOneMan: getOneMan
     }
 })

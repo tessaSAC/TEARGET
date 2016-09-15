@@ -1,6 +1,6 @@
-const express = require('express'),
-	  router = express.Router(),
-	  User = require('../../../db/models/user'),
+const express = require('express');
+const router = express.Router();
+const User = require('../../../db/models/user'),
 	  Cart = require('../../../db/models/cart');
 
 let userId;
@@ -55,7 +55,6 @@ router.post('/:itemName', function(request, response, next) {
 });
 
 
-
 router.delete('/:itemToDelete', function(request, response, next) {
 	User.findById(userId)
 	.then(function(findingItemToDelete) {
@@ -65,7 +64,9 @@ router.delete('/:itemToDelete', function(request, response, next) {
 				response.sendStatus(204);
 			});
 		}
-		else response.status(404).send("Item not found");
+		else {
+			response.status(404).send('Item not found');
+		}
 	});
 });
 

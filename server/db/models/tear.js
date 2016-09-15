@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
 var db = require('../_db');
-var man = require('./man');
 
 module.exports = db.define('tear', {
     title: {
