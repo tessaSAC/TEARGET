@@ -23,7 +23,5 @@ app.controller('SignupCtrl', function ($rootScope, $scope, AuthService, $state, 
                 $scope.error = 'Invalid login credentials.';
             });
         });
-
     };
-
 });
