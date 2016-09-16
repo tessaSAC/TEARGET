@@ -1,7 +1,7 @@
-const express = require('express'),
-	  router = express.Router(),
-	  User = require('../../../db/models/user'),
-	  Cart = require('../../../db/models/cart');
+const express = require('express');
+const router = express.Router();
+const User = require('../../../db/models/user');
+// const Cart = require('../../../db/models/cart');
 
 
 router.get('/:userId', function(request, response, next) {
@@ -14,17 +14,38 @@ router.get('/:userId', function(request, response, next) {
 	.catch(next);
 });
 
+// returns the user's open cart
 router.get('/:userId/cart/', function(request, response, next) {
 
 	let userId = request.params.userId;
+
 	User.findById(userId)
 	.then(function(user) {
-		return user.getCarts();
+		if (user) return user.getCarts({where: {is_open: true}});
+		throw new Error('That user does not exist.');
 	})
 	.then(function(carts){
 		response.json(carts);
 	})
 	.catch(next);
 });
+
+// returns the user's oder history
+router.get('/:userId/orders/', function(request, response, next) {
+
+	let userId = request.params.userId;
+
+	User.findById(userId)
+	.then(function(user) {
+		if (user) return user.getCarts({where: {is_open: false}});
+		throw new Error('That user does not exist.');
+	})
+	.then(function(carts){
+		response.json(carts);
+	})
+	.catch(next);
+});
+
+// userid/orders/:months?
 
 module.exports = router;

@@ -7,6 +7,10 @@ module.exports = db.define('cart', {
     },
     total: {
         type: Sequelize.DECIMAL
+    },
+    is_open: {
+        defaultValue: true,
+        type: Sequelize.BOOLEAN
     }
 }, {
     instanceMethods: {

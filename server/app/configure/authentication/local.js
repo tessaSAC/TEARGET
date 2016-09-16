@@ -36,7 +36,7 @@ module.exports = function (app, db) {
             return User.create(user)
             .then(function(user2){
 
-                return user2.addCart(cart)
+                return user2.addCart(cart);
             })
 
         })
@@ -94,7 +94,7 @@ module.exports = function (app, db) {
                         req.logIn(user2, function (loginErr) {
                         if (loginErr) return next(loginErr);
                         res.status(200).send({
-                            user: user.sanitize()
+                            user: user2.sanitize()
                         });
                     });
             })
