@@ -8,15 +8,6 @@ app.config(function ($stateProvider) {
 
 });
 
-// Storage.prototype.setObject = function(key, value) {
-//     this.setItem(key, JSON.stringify(value));
-// }
-
-// Storage.prototype.getObject = function(key) {
-//     var value = this.getItem(key);
-//     return value && JSON.parse(value);
-// }
-
 app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Session) {
 
     $scope.login = {};
@@ -32,8 +23,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Sessio
             return $http.get('/api/user/' + Session.user.id + '/cart')
         })
         .then(function(cart){
-            cart = cart.dataValues;
-            localStorage.setItem('cart', Session.user.id);
+            localStorage.setItem('cart', cart.data[0].array);
             $state.go('home');
         })
         .catch(function () {

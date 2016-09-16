@@ -55,6 +55,10 @@ router.get('/:userId/orders/', function(request, response, next) {
 	.catch(next);
 });
 
-// userid/orders/:months?
+
+// Update the user's cart
+router.post('/:userId/cart/', function(request, response, next) {
+
+});
 
 module.exports = router;

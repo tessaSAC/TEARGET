@@ -72,7 +72,7 @@ module.exports = function (app, db) {
         };
 
         passport.authenticate('local', authCb)(req, res, next);
-        console.log(req.session.sid);
+        // console.log(req.session.sid);
 
     });
 
