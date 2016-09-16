@@ -64,13 +64,15 @@ module.exports = function (app, db) {
                 // console.log("THIS IS LSOTRAGE", localStorage);
                 if (loginErr) return next(loginErr);
                 res.status(200).send({
-                    user: user.sanitize()
+                    user: user.sanitize(),
+                    sessionId: req.session.id
                 });
             });
 
         };
 
         passport.authenticate('local', authCb)(req, res, next);
+        console.log(req.session.sid);
 
     });
 
@@ -102,7 +104,6 @@ module.exports = function (app, db) {
 
         } // auth
 
-        // console.log("THIS IS THE SIGNUP STUFF", req.body);
         passport.authenticate('local', authCb)(req, res, next);
 
     });

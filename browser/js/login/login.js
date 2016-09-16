@@ -8,6 +8,15 @@ app.config(function ($stateProvider) {
 
 });
 
+// Storage.prototype.setObject = function(key, value) {
+//     this.setItem(key, JSON.stringify(value));
+// }
+
+// Storage.prototype.getObject = function(key) {
+//     var value = this.getItem(key);
+//     return value && JSON.parse(value);
+// }
+
 app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Session) {
 
     $scope.login = {};
@@ -18,24 +27,19 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Sessio
 
         $scope.error = null;
 
-        AuthService.login(loginInfo).then(function () {
+        AuthService.login(loginInfo)
+        .then(function () {
+            return $http.get('/api/user/' + Session.user.id + '/cart')
+        })
+        .then(function(cart){
+            cart = cart.dataValues;
+            localStorage.setItem('cart', Session.user.id);
             $state.go('home');
         })
         .catch(function () {
             $scope.error = 'Invalid login credentials.';
         });
 
-            localStorage.setItem('DOG', '' + Session.user);
     };
-
-    // localStorage.setItem('DOG', '' + Session.user);
-
-    // let userID = $cookie.get(sid);
-    // alert(userID);
-    // $http.get('/cart/?user=' + userID)
-    // .then(function(cart){
-    //     if (cart) angular.copy(cart.data, localStorage);
-    //     return localStorage;
-    // })
 
 });

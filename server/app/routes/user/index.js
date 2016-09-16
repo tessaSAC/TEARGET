@@ -3,6 +3,15 @@ const router = express.Router();
 const User = require('../../../db/models/user');
 // const Cart = require('../../../db/models/cart');
 
+router.get('/', function(request, response, next) {
+
+	User.findAll()
+	.then(function(users) {
+		response.json(users);
+	})
+	.catch(next);
+
+});
 
 router.get('/:userId', function(request, response, next) {
 
