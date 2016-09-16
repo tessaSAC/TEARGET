@@ -47,6 +47,7 @@ describe('Tear Route', function(){
     it('should get back a JSON of a tear by id', function (done){
         agent.get('/api/tears/' + tear.id).expect(200).end(function(err, response){
             if (err) return done(err);
+            console.log(response.body);
             expect(response.body.title).to.equal(tear.title)
             done();
         });

@@ -76,7 +76,7 @@ describe('Men Route', function(){
     it('should get back an array of tears belonging to specified Man ', function(done){
         agent.get('/api/men/' + man.id + '/tears').expect(200).end(function(err, response){
             if (err) return done(err);
-            console.log(response.body.id);
+            console.log(response.body[0]);
             expect(response.body[0].id).to.equal(tear.id);
             done();
         });

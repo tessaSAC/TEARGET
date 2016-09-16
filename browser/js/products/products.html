@@ -1,0 +1,34 @@
+<div>
+    <h3>Products</h3>
+    <div class = "row">
+        <form action="">
+            <select name="state" id="state">
+                <option selected="selected" disabled="disabled" >Select an Emotional State</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+            </select>
+            <select name="organic" id="organic">
+                <option selected="selected" disabled="disabled">Select Organic Tears!</option>
+                <option value="organic">Organic</option>
+                <option value="non-organic">Non-organic</option>
+            </select>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" ng-repeat ="product in products">
+            <a class="thumbnail">
+                <img ng-src="{{product.pictureUrl}}">
+                <div class = "caption">
+                    <h5>
+                        <span>{{ product.title}}</span>
+                    </h5>
+                    <small>{{ product.description }}</small>
+                    <small>Size: {{ product.size }}</small>
+                    <small>Price: {{product.price | currency}}</small>
+
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

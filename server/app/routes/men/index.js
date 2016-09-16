@@ -28,7 +28,12 @@ router.get('/:id', function(request, response, next){
 });
 
 router.get('/:id/tears', function(request, response, next){
-    Tear.findAll({where: {manId: request.params.id}})
+    Tear.findAll({
+        where: {manId: request.params.id},
+        include: [
+            {model: Man}
+        ]
+})
     .then(function(tears){
         if (!tears) response.status(404).end();
         response.json(tears);
