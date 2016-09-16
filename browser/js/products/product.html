@@ -6,10 +6,11 @@
                     <h5>
                         <span>{{ product.title}}</span>
                     </h5>
-                    <small>Supplier: {{product.man[0].name}}</small>
+                    <small>Supplier: {{product.man.name}}</small>
                     <small>{{ product.description }}</small>
-                    <small>Size: {{ product.size }}</small>
+                    <small>Size: {{ product.size }}ml</small>
                     <small>Price: {{product.price | currency}}</small>
+                    <button>Add to Cart</button>
 
                 </div>
             </a>

@@ -1,6 +1,12 @@
 app.config(function ($stateProvider) {
+    $stateProvider.state('ProductBar', {
+       url: '/products',
+       templateUrl : 'js/products/productBar.html',
+
+    })
     $stateProvider.state('AllProducts', {
-        url: '/products',
+        url: '/',
+        parent: 'ProductBar',
         templateUrl: 'js/products/products.html',
         controller: 'ProductsCtrl',
         resolve: {
@@ -10,12 +16,24 @@ app.config(function ($stateProvider) {
         }
     })
     $stateProvider.state('product' ,{
-        url: '/products/:id',
+        url: '/:id',
+        parent: 'ProductBar',
         templateUrl: 'js/products/product.html',
         controller: 'ProductDetailCtrl',
         resolve: {
             product: function (ProductFactory, $stateParams) {
                 return ProductFactory.getOneTear($stateParams.id);
+            }
+        }
+    })
+    $stateProvider.state('organicProducts', {
+        url: '/organic/:bool',
+        parent: 'ProductBar',
+        templateUrl: 'js/products/products.html', 
+        controller: 'OrganicCtrl',
+        resolve: {
+            products: function(ProductFactory, $stateParams) {
+                return ProductFactory.getOrganicTears($stateParams.bool);
             }
         }
     })
@@ -29,6 +47,10 @@ app.controller('ProductsCtrl', function($scope, products){
 
 app.controller('ProductDetailCtrl', function($scope, product){
     $scope.product = product;
+});
+
+app.controller('OrganicCtrl', function($scope, products){
+    $scope.products = products;
 })
 
 
@@ -57,8 +79,8 @@ app.factory('ProductFactory', function($http){
                 return response.data
             });
     };
-    var getOrganicTears = function(organic){
-        return $http.get('/api/tears' + organic)
+    var getOrganicTears = function(bool){
+        return $http.get('/api/tears/?organic=' + bool)
             .then( function(response){
                 return response.data
             });
