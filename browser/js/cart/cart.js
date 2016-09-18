@@ -4,10 +4,11 @@ app.factory('CartFactory', function($http){
 
 	// return cart as an array of product ids.
 	CartFactory.getCart = function(userId){
-		// return $http.get('/api/user/' + Session.user.id + '/cart')
-		// .then(function(cart){
-		// 	cart = cart.data[0];
-		// })
+		return $http.get('/api/user/' + userId + '/cart')
+		.then(function(cart){
+			cart = cart.data[0];
+			return cart;
+		})
 	}
 
 	// save the cart to the db
