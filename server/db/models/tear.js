@@ -28,6 +28,7 @@ module.exports = db.define('tear', {
         type: Sequelize.DECIMAL
     }
 }, {
+<<<<<<< HEAD
 
     getterMethods: {
         description: function(){
@@ -37,6 +38,11 @@ module.exports = db.define('tear', {
             }
             return (this.state + ' ' + 'tears');
 
+=======
+    instanceMethods: 
+        description: function(){
+            return (this.state + ' ' + this.organic + 'tears');
+>>>>>>> develop
         }
     },
 
