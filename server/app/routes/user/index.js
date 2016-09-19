@@ -57,7 +57,7 @@ router.get('/:userId/orders/', function(request, response, next) {
 });
 
 
-// Update the user's cart in the database
+// Update the user's cart in the database and return the new array.
 router.post('/:userId/cart/', function(request, response, next) {
 
 	let userId = request.params.userId;
@@ -72,8 +72,9 @@ router.post('/:userId/cart/', function(request, response, next) {
 		let cart = carts[0];
 		return cart.update({array: cartArray});
 	})
-	.then(function(){
-		response.status(200).send();
+	.then(function(cart){
+		// console.log(cart.array);
+		response.send(cart.array);
 	})
 	.catch(next);
 
