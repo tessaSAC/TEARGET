@@ -36,6 +36,7 @@ module.exports = function (app, db) {
             return User.create(user)
             .then(function(user2){
 
+
                 return user2.addCart(cart);
             })
 
@@ -92,8 +93,18 @@ module.exports = function (app, db) {
             else {
                 user = req.body;
                 makeUser(user)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                .then(function(user){
+>>>>>>> develop
+
                 .then(function(user2){
                         req.logIn(user2, function (loginErr) {
+<<<<<<< HEAD
+=======
+>>>>>>> develop
+>>>>>>> develop
                         if (loginErr) return next(loginErr);
                         res.status(200).send({
                             user: user2.sanitize()

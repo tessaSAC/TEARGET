@@ -1,3 +1,4 @@
+/*global describe beforeEach it  */
 // Instantiate all models
 const db = require('../../../server/db');
 const Sequelize = require('sequelize');
@@ -46,8 +47,32 @@ describe('Tear Route', function(){
     it('should get back a JSON of a tear by id', function (done){
         agent.get('/api/tears/' + tear.id).expect(200).end(function(err, response){
             if (err) return done(err);
+            console.log(response.body);
             expect(response.body.title).to.equal(tear.title)
             done();
         });
     });
+
+    it('should get back a JSON of a tear by state', function (done){
+        agent.get('/api/tears?state=sad').expect(200).end(function(err, response){
+            if (err) return done(err);
+            expect(response.body[0].id).to.equal(tear.id)
+            done();
+        });
+    });
+
+    it('should not get back a JSON of happy tears', function (done){
+        agent.get('/api/tears?state=happy').expect(404).end(function(err, response){
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    it('should get back a JSON of a tear by organic', function(done) {
+        agent.get('/api/tears/?organic=true').expect(200).end(function(err, response) {
+            if (err) return done(err);
+            expect(response.body[0].id).to.equal(tear.id);
+            done();
+        })
+    })
 });

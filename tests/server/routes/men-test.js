@@ -1,3 +1,4 @@
+/* global beforeEach describe it*/
 const db = require('../../../server/db');
 const Sequelize = require('sequelize');
 //require('../../../server/db/models/tears.js');
@@ -34,29 +35,28 @@ describe('Men Route', function(){
     });
 
         beforeEach('Create a tear', function(done) {
-        return Tear.create(tearInfo).then(function(createdTear){
-        
+            Tear.create(tearInfo).then(function(createdTear){
             tear = createdTear;
             done();
-            }).catch(done);
-            
+            })
+            .catch(done);
+
     });
 
         beforeEach('Create a man', function(done) {
         return Man.create(menInfo).then(function(createdMan){
-            
+
             return createdMan.addTear(tear);
         })
         .then(function(createdMan){
             man = createdMan;
             done();
-        }).catch(done);
-        
+        })
+        .catch(done);
+
     })
 
-        
 
-    
     it('should get back a JSON of all Men in database', function (done){
         agent.get('/api/men').expect(200).end(function(err, response){
             if (err) return done(err);
@@ -68,7 +68,7 @@ describe('Men Route', function(){
     it('should get back a man by id', function (done){
         agent.get('/api/men/' + man.id).expect(200).end(function(err, response){
             if (err) return done(err);
-            
+
             expect(response.body.name).to.equal(man.name)
             done();
         });
@@ -76,7 +76,7 @@ describe('Men Route', function(){
     it('should get back an array of tears belonging to specified Man ', function(done){
         agent.get('/api/men/' + man.id + '/tears').expect(200).end(function(err, response){
             if (err) return done(err);
-            console.log(response.body.id);
+            console.log(response.body[0]);
             expect(response.body[0].id).to.equal(tear.id);
             done();
         });
