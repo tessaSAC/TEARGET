@@ -34,12 +34,11 @@ module.exports = function (app, db) {
         .then(function(cart){
 
             return User.create(user)
-            .then(function(user){
 
-                return user.addCart(cart)
-                // .then (function(user2){
-                //     return user2;
-                // })
+            .then(function(user2){
+
+
+                return user2.addCart(cart);
             })
 
         })
@@ -64,18 +63,21 @@ module.exports = function (app, db) {
 
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
+                // console.log("THIS IS LSOTRAGE", localStorage);
                 if (loginErr) return next(loginErr);
-                // We respond with a response object that has user with _id and email.
                 res.status(200).send({
-                    user: user.sanitize()
+                    user: user.sanitize(),
+                    sessionId: req.session.id
                 });
             });
 
         };
 
         passport.authenticate('local', authCb)(req, res, next);
+        // console.log(req.session.sid);
 
     });
+
 
     app.post('/signup', function (req, res, next) {
 
@@ -92,13 +94,12 @@ module.exports = function (app, db) {
             else {
                 user = req.body;
                 makeUser(user)
-                .then(function(user){
 
-                    req.logIn(user, function (loginErr) {
+                .then(function(user2){
+                        req.logIn(user2, function (loginErr) {
                         if (loginErr) return next(loginErr);
-                        // We respond with a response object that has user with _id and email.
                         res.status(200).send({
-                            user: user.sanitize()
+                            user: user2.sanitize()
                         });
                     });
             })
@@ -106,7 +107,6 @@ module.exports = function (app, db) {
 
         } // auth
 
-        // console.log("THIS IS THE SIGNUP STUFF", req.body);
         passport.authenticate('local', authCb)(req, res, next);
 
     });
