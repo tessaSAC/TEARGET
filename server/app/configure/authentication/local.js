@@ -93,18 +93,10 @@ module.exports = function (app, db) {
             else {
                 user = req.body;
                 makeUser(user)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                .then(function(user){
->>>>>>> develop
 
                 .then(function(user2){
                         req.logIn(user2, function (loginErr) {
-<<<<<<< HEAD
-=======
->>>>>>> develop
->>>>>>> develop
+
                         if (loginErr) return next(loginErr);
                         res.status(200).send({
                             user: user2.sanitize()
