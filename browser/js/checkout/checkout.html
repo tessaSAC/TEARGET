@@ -1,0 +1,43 @@
+<html ng-app="FullstackGeneratedApp">
+
+  <head>
+    <title>Simple Example - Angular Stripe Checkout</title>
+  </head>
+  <body ng-controller="SimpleExampleController as ctrl">
+    <!--
+      Works like Stripe Checkout's simple integration, but calls the
+      function passed to stripe-checkout with the token object instead
+      of submitting a form.
+    -->
+    <button stripe-checkout="ctrl.doCheckout"
+            data-key="pk_test_u7H2gx9PKRVMbGRAhmTlxxrv"
+            data-name="Simple Example"
+            data-description="Five dollahs!"
+            data-amount="500">
+      Buy
+    </button>
+
+
+
+    <script src="../../../lodash/index.js"></script>
+    <script src="../../../angular/angular.js"></script>
+    <script src="../../../angular-animate/angular-animate.js"></script>
+    <script src="../../../angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../../../angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <script src="/../../../angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../../../socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="../../../node_modules/angular-stripe-checkout/angular-stripe-checkout.js"></script>
+
+    <script>
+      angular.module("simpleExample",["stripe.checkout"])
+        .controller("SimpleExampleController",function() {
+          this.doCheckout = function(token) {
+            alert("Got Stripe token: " + token.id);
+          };
+        });
+    </script>
+  </body>
+</html>
