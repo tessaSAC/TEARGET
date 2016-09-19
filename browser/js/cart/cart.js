@@ -8,31 +8,36 @@ app.config(function ($stateProvider) {
 
 app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 
-	$scope.cartArray = CartFactory.cartToArray(localStorage.cart);
-	$scope.userId = Session.user.id;
+	let cart = null;
+	let userId = null;
+
+	$scope.cartArray = null;
 	$scope.itemNums = null;
-	// $scope.products = null;
 	$scope.obj = null;
 	$scope.totalCents = 0;
 
-	CartFactory.getProductNames($scope.userId, $scope.cartArray)
-	.then(function(names){
-		$scope.products = names;
-		return $scope.products;
-	})
-	.then(function(products){
-		$scope.obj = CartFactory.getProductObj(products);
-		return $scope.obj;
-	})
-	.then(function(cartObj){
-		$scope.totalCents = CartFactory.getTotalCents(cartObj);
-	});
-
-	if (localStorage.cart === 'null'){
-		$scope.itemNums = 0;
-	}
-	else {
+	if (Session.user) {
+		userId = Session.user.id;
+		cart = localStorage.cart;
+		$scope.cartArray = CartFactory.cartToArray(cart);
 		$scope.itemNums = $scope.cartArray.length;
+
+		CartFactory.getProductNames(userId, $scope.cartArray)
+		.then(function(names){
+			$scope.products = names;
+			return $scope.products;
+		})
+		.then(function(products){
+			$scope.obj = CartFactory.getProductObj(products);
+			$scope.totalCents = CartFactory.getTotalCents($scope.obj);
+		})
+	}
+
+	else {
+		cart = localStorage.getItem('cart') || null;
+		$scope.itemNums = 0;
+		$scope.obj = {};
+		$scope.totalCents = 0;
 	}
 
 })
@@ -69,6 +74,8 @@ app.factory('CartFactory', function($http, $q){
 
 	// convert the localStorage cart into an array of ints
 	CartFactory.cartToArray = function(strCart){
+		if (!strCart) return null;
+
 		strCart = strCart.split(',');
 		strCart = strCart.map(function(ele){
 			return Number(ele);
@@ -77,11 +84,6 @@ app.factory('CartFactory', function($http, $q){
 	}
 
 	CartFactory.getProductNames = function(userId, cartArray){
-		// cartArr = cartArr.filter(function(item, index, inputArray) {
-		// return inputArray.indexOf(item) == index;
-		// });
-
-		let cartObj = {};
 
         return $http.post('/api/user/' + userId + '/cart', cartArray)
         .then(function(){
@@ -112,7 +114,6 @@ app.factory('CartFactory', function($http, $q){
 			return name[0];
 		});
 
-
 		let obj = {};
 		names.forEach(function(name, index){
 
@@ -140,6 +141,14 @@ app.factory('CartFactory', function($http, $q){
 		}
 		return total;
 	};
+
+	// CartFactory.getCartSize = function(localStorageCart){
+
+	// };
+
+	// CartFactory.addToFrontEndCart = function(add){
+
+	// };
 
 	return CartFactory;
 
