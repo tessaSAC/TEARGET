@@ -8,7 +8,7 @@ module.exports = db.define('man', {
     bio: {
         type: Sequelize.TEXT
     },
-    photo: {
+    pictureUrl: {
         type: Sequelize.STRING
     }
 }, {

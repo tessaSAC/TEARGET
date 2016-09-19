@@ -92,8 +92,14 @@ module.exports = function (app, db) {
             else {
                 user = req.body;
                 makeUser(user)
+<<<<<<< HEAD
+                .then(function(user){
+
+                    req.logIn(user, function (loginErr) {
+=======
                 .then(function(user2){
                         req.logIn(user2, function (loginErr) {
+>>>>>>> develop
                         if (loginErr) return next(loginErr);
                         res.status(200).send({
                             user: user2.sanitize()

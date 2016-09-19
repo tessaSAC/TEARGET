@@ -8,7 +8,7 @@ module.exports = db.define('tear', {
     // description: {
     //     type: Sequelize.STRING
     // },
-    photo: {
+    pictureUrl: {
         type: Sequelize.STRING
     },
 
@@ -28,10 +28,21 @@ module.exports = db.define('tear', {
         type: Sequelize.DECIMAL
     }
 }, {
-    instanceMethods: 
+
+    getterMethods: {
         description: function(){
-            return (this.state + ' ' + this.organic + 'tears');
+            if (this.organic){
+                let natural = 'organic'
+                return (this.state + ' ' + natural + ' tears');
+            }
+            return (this.state + ' ' + 'tears');
+
         }
+    },
+
+    // 
+    instanceMethods: {
+        
     },
     classMethods: {
 

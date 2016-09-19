@@ -1,3 +1,4 @@
+/*global describe beforeEach it afterEach */
 var sinon = require('sinon');
 var expect = require('chai').expect;
 
