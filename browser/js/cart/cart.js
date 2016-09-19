@@ -142,6 +142,13 @@ app.factory('CartFactory', function($http, $q){
 		return total;
 	};
 
+	CartFactory.addItemToCart = function(id){
+		let cart = localStorage.cart || '';
+		if (cart != '') cart += ',';
+		cart += id;
+		localStorage.setItem('cart', cart);
+	}
+
 	// CartFactory.getCartSize = function(localStorageCart){
 
 	// };

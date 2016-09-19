@@ -11,7 +11,7 @@
                     <small>Size: {{ product.size }}ml</small><br>
                     <small>Price: {{ product.price | currency }}</small><br>
                     <small>Reviews: <span ng-repeat= "review in product.reviews"><br>{{ review.text }}</span></small><br>
-                    <button>Add to Cart</button>
+                    <button ng-click="addItemToCart(product.id)">Add to Cart</button>
                 </div>
             </div>
         </div>
