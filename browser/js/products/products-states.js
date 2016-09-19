@@ -16,7 +16,7 @@ app.config(function ($stateProvider) {
         }
     });
     $stateProvider.state('product' ,{
-        url: 'products/:id',
+        url: '/products/:id',
         parent: 'products',
         templateUrl: 'js/products/product.html',
         controller: 'ProductDetailCtrl',
@@ -27,7 +27,7 @@ app.config(function ($stateProvider) {
         }
     })
     $stateProvider.state('organicProducts', {
-        url: 'products/organic/:bool',
+        url: '/products/organic/:bool',
         parent: 'products',
         templateUrl: 'js/products/products.html', 
         controller: 'OrganicCtrl',
@@ -38,7 +38,7 @@ app.config(function ($stateProvider) {
         }
     })
     $stateProvider.state('emotionProducts', {
-        url: 'products/state/:emotion',
+        url: '/products/state/:emotion',
         parent: 'products',
         templateUrl: 'js/products/products.html',
         controller: 'EmotionCtrl',
