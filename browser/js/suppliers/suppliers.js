@@ -1,3 +1,4 @@
+
 app.config(function ($stateProvider) {
     $stateProvider.state('suppliers', {
         url: '/',
@@ -6,7 +7,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SuppliersCtrl', function($scope, $state, ProductFactory){
+app.controller('SuppliersCtrl', function($scope, $state, SupplierFactory){
     SupplierFactory.getAll()
     .then(function(suppliers){
         $scope.suppliers = suppliers;

@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('products', {
         url: '/',
-        templateUrl: 'js/products/products.html', 
+        templateUrl: 'js/products/products.html',
         controller: 'ProductsCtrl'
     });
 });
@@ -20,7 +20,7 @@ app.factory('ProductFactory', function($http){
         .then( function(response){
             return response.data;
         });
-    };        
+    };
     var getOneTear = function(tearId){
         $http.get('/api/tears/' + tearId)
         .then( function(response){
@@ -51,7 +51,7 @@ app.factory('ProductFactory', function($http){
             return response.data
         })
     }
-    
+
      return {
         getAll: getAll,
         getOneTear: getOneTear,
