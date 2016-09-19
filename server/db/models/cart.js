@@ -18,7 +18,7 @@ module.exports = db.define('cart', {
     },
     classMethods: {
 
-    },
+   },
     hooks: {
 
     }
