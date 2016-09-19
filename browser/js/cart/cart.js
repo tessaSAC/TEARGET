@@ -29,15 +29,12 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 		})
 		.then(function(products){
 			$scope.obj = CartFactory.getProductObj(products);
-			return $scope.obj;
+			$scope.totalCents = CartFactory.getTotalCents($scope.obj);
 		})
-		.then(function(cartObj){
-			$scope.totalCents = CartFactory.getTotalCents(cartObj);
-		});
 	}
 
 	else {
-		cart = localStorage.getItem('cart') || 2;
+		cart = localStorage.getItem('cart') || null;
 		$scope.itemNums = 0;
 		$scope.obj = {};
 		$scope.totalCents = 0;
@@ -116,7 +113,6 @@ app.factory('CartFactory', function($http, $q){
 		names = names.map(function(name){
 			return name[0];
 		});
-
 
 		let obj = {};
 		names.forEach(function(name, index){
