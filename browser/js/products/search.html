@@ -1,6 +1,7 @@
+<label for="">SEARCH: <input ng-model="searchText"></label>
 
 <div class="row">
-        <div class="col-xs-4" ng-repeat ="product in products">
+        <div class="col-xs-4" ng-repeat ="product in products | filter:searchText">
             <a class="thumbnail" ui-sref="product({id: product.id})">
                 <img ng-src="{{product.pictureUrl}}">
                 <div class = "caption">
