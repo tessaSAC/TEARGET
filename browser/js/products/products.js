@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('products', {
        abstract: 'AllProducts',
-       templateUrl : 'js/products/productBar.html',
+       templateUrl : 'js/products/productBar.html'
 
     })
     $stateProvider.state('products.AllProducts', {
