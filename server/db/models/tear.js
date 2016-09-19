@@ -36,6 +36,7 @@ module.exports = db.define('tear', {
                 return (this.state + ' ' + natural + ' tears');
             }
             return (this.state + ' ' + 'tears');
+
         }
     },
 
