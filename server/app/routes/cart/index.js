@@ -1,73 +1,32 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../../../db/models/user'),
-	  Cart = require('../../../db/models/cart');
-
-let userId;
-
-// router.use('/:userId', function(request, response, next) {
-// 	if (request.params.userId) userId = request.params.userId;
-// 	else throw Error;
-// });
-
-
-router.get('/:userId', function(request, response, next) {
-	let userId = request.params.userId;
-
-	User.findOne({
-		where: { id: userId }
-	})
-	.then(function(user) {
-		Cart.findOne({
-			where: {id: user.cartId}
-		})
-		.then(function(cart){
-			response.json(cart);
-		})
-	})
-	.catch(next);
-});
-
-
-// findOrCreate - make a cart if the user doesn't have one already
-
-router.post('/:itemName', function(request, response, next) {
-	return Cart.findOne({
-		where: { userId: userId }
-	}).then(function(findingCart) {
-
-		if (findingCart) {
-			// BOOLEAN FOR WHETHER PRODUCT IS IN CART
-			let isInCart = false;
-
-			// IF PRODUCT IS IN CART INCREMENT BY ONE
-			for (let product in findingCart) {
-				if (product === request.body.itemName) {
-					isInCart = true;
-					++(findingCart[product]);
-				}
-			}
-			// IF PRODUCT NOT IN CART ADD ONE TO CART
-			if (!isInCart) findingCart[product] = 1;
-
-		}
-	});
-});
-
-
-router.delete('/:itemToDelete', function(request, response, next) {
-	User.findById(userId)
-	.then(function(findingItemToDelete) {
-		if (findingItemToDelete) {
-			return findingItemToDelete.destroy()
-			.then(function() {
-				response.sendStatus(204);
-			});
-		}
-		else {
-			response.status(404).send('Item not found');
-		}
-	});
-});
-
+'use strict';
+var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
+var _ = require('lodash');
+
+var ensureAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.status(401).end();
+    }
+};
+
+router.get('/secret-stash', ensureAuthenticated, function (req, res) {
+
+    var theStash = [
+        'http://ep.yimg.com/ay/candy-crate/bulk-candy-store-2.gif',
+        'http://www.dailybunny.com/.a/6a00d8341bfd0953ef0148c793026c970c-pi',
+        'http://images.boomsbeat.com/data/images/full/44019/puppy-wink_1-jpg.jpg',
+        'http://p-fst1.pixstatic.com/51071384dbd0cb50dc00616b._w.540_h.610_s.fit_.jpg',
+        'http://childcarecenter.us/static/images/providers/2/89732/logo-sunshine.png',
+        'http://www.allgraphics123.com/ag/01/10683/10683.jpg',
+        'http://img.pandawhale.com/post-23576-aflac-dancing-duck-pigeons-vic-RU0j.gif',
+        'http://www.eveningnews24.co.uk/polopoly_fs/1.1960527.1362056030!/image/1301571176.jpg_gen/derivatives/landscape_630/1301571176.jpg',
+        'http://media.giphy.com/media/vCKC987OpQAco/giphy.gif',
+        'https://my.vetmatrixbase.com/clients/12679/images/cats-animals-grass-kittens--800x960.jpg',
+        'http://www.dailymobile.net/wp-content/uploads/2014/10/lollipops.jpg'
+    ];
+
+    res.send(_.shuffle(theStash));
+
+});

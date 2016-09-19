@@ -117,28 +117,17 @@ var seedCart = function () {
 
     var cart = [
         {
-            items: {tears:
-                {id: 1,
-                 title: 'Tears1',
-                 amount: 1},
-
-                total: '5'
-            }
+            array: [1, 2, 3],
+            is_open: true
         },
         {
-            items: {tears:
-                {id: 2,
-                 title: 'Tears1',
-                 amount: 4},
-
-                total: '10'
-            }
+            array: [2, 2, 3],
+            is_open: false
         },
         {
-            items: {tears: {},
-                total: '0'
-            }
-        }
+            array: [4, 2, 1],
+            is_open: true
+        }       
     ];
 
     var creatingCarts = cart.map(function (userObj) {

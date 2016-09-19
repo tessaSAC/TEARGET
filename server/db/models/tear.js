@@ -28,6 +28,7 @@ module.exports = db.define('tear', {
         type: Sequelize.DECIMAL
     }
 }, {
+
     getterMethods: {
         description: function(){
             if (this.organic){
