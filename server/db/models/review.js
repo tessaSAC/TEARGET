@@ -1,15 +1,21 @@
 var Sequelize = require('sequelize');
 var db = require('../_db');
 
-module.exports = db.define('man', {
-    name: {
+module.exports = db.define('review', {
+    user_name: {
         type: Sequelize.STRING
     },
-    bio: {
+
+    rating: {
+        type: Sequelize.INTEGER
+    },
+
+    text: {
         type: Sequelize.TEXT
     },
-    pictureUrl: {
-        type: Sequelize.STRING
+
+    date: {
+        type: Sequelize.DATEONLY
     }
 }, {
     instanceMethods: {
@@ -22,4 +28,3 @@ module.exports = db.define('man', {
 
     }
 });
-

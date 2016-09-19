@@ -1,4 +1,4 @@
-/*
+/* global require process console
 
 This seed file is only a placeholder. It should be expanded and altered
 to fit the development of your application.
@@ -52,16 +52,19 @@ var seedMen = function () {
 
     var men = [
         {
-            name: 'Bill',
-            bio: 'Bills likes to cry.'
+            name: 'Nick',
+            bio: 'Nick likes to cry.',
+            pictureUrl: 'https://www.placecage.com/g/155/300'
         },
         {
             name: 'Obama',
-            bio: 'POTUS'
+            bio: 'POTUS',
+            pictureUrl: 'http://ifreestockphotos.com/wp-content/uploads/2016/05/barack-obama-free-stock-photos-768x960.jpg'
         },
         {
             name: 'Ben',
-            bio: 'Might be a dog. Woof!'
+            bio: 'Might be a dog. Woof!',
+            pictureUrl: 'https://thumbs.dreamstime.com/x/man-dog-park-central-asian-shepherd-walk-keeps-leash-35341989.jpg'
         }
     ];
 
@@ -79,7 +82,7 @@ var seedTears = function () {
         {
             title: 'Tears1',
             state: 'sad',
-            organic: '',
+            organic: false,
             amount_left: 2,
             price: 2,
             size: 1
@@ -87,7 +90,7 @@ var seedTears = function () {
         {
             title: 'Tears2',
             state: 'happy',
-            organic: '',
+            organic: true,
             amount_left: 223,
             price: 12,
             size: 551
@@ -95,7 +98,7 @@ var seedTears = function () {
         {
             title: 'Tears3',
             state: 'angry',
-            organic: '',
+            organic: true,
             amount_left: 4,
             price: 21,
             size: 7
@@ -114,28 +117,17 @@ var seedCart = function () {
 
     var cart = [
         {
-            items: {tears:
-                {id: 1,
-                 title: 'Tears1',
-                 amount: 1},
-
-                total: '5'
-            }
+            array: [1, 2, 3],
+            is_open: true
         },
         {
-            items: {tears:
-                {id: 2,
-                 title: 'Tears1',
-                 amount: 4},
-
-                total: '10'
-            }
+            array: [2, 2, 3],
+            is_open: false
         },
         {
-            items: {tears: {},
-                total: '0'
-            }
-        }
+            array: [4, 2, 1],
+            is_open: true
+        }       
     ];
 
     var creatingCarts = cart.map(function (userObj) {
@@ -157,7 +149,7 @@ db.sync({ force: true })
     .then(function(){
         return seedTears();
     })
-    .then (function(){
+    .then(function(){
         return seedCart();
     })
     .then(function () {
