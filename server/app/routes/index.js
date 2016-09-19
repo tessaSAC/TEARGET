@@ -10,6 +10,7 @@ module.exports = router;
 router.use('/tears', require('./tears'));
 router.use('/men', require('./men'));
 router.use('/cart', require('./cart'));
+router.use('/user', require('./user'));
 
 // Make sure this is after all of
 // the registered routes!

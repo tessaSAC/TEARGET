@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
 var db = require('../_db');
-var man = require('./man');
 
 module.exports = db.define('tear', {
     title: {
@@ -29,7 +28,7 @@ module.exports = db.define('tear', {
         type: Sequelize.DECIMAL
     }
 }, {
-    instanceMethods: {
+    instanceMethods: 
         description: function(){
             return (this.state + ' ' + this.organic + 'tears');
         }
