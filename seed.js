@@ -24,6 +24,7 @@ var User = db.model('user');
 var Men = db.model('man');
 var Tears = db.model('tear');
 var Cart = db.model('cart');
+var Review = db.model('review');
 
 var Promise = require('sequelize').Promise;
 
@@ -138,6 +139,21 @@ var seedCart = function () {
 
 };
 
+var seedReview = function(){
+    
+    var review =[
+        {
+            rating: 4,
+            text: "Nick's tears were amazing, they were super clear and smelled nice and salty." 
+        }
+    ]
+    var creatingReviews = review.map(function (review){
+        return Review.create(review);
+    });
+    
+    return Promise.all(creatingReviews);
+}
+
 
 db.sync({ force: true })
     .then(function () {
@@ -151,6 +167,9 @@ db.sync({ force: true })
     })
     .then(function(){
         return seedCart();
+    })
+    .then(function(){
+        return seedReview();
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));

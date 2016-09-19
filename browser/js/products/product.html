@@ -1,17 +1,23 @@
 <div class="row">
         <div class="col-xs-4">
-            <a class="thumbnail">
+            <div class="thumbnail">
                 <img ng-src="{{product.pictureUrl}}">
                 <div class = "caption">
                     <h5>
                         <span>{{ product.title}}</span>
                     </h5>
-                    <small>Supplier: {{product.man.name}}</small>
+                    <a ui-sref="supplier({id: product.man.id})">Supplier: {{product.man.name}}</a>
                     <small>{{ product.description }}</small>
+<<<<<<< HEAD
                     <small>Size: {{ product.size }}</small>
                     <small>Price: {{product.price | currency}}</small>
+=======
+                    <small>Size: {{ product.size }}ml</small>
+                    <small>Price (in cents -US): {{product.price</small>
+                    <small>Reviews: <span ng-repeat= "review in product.reviews">{{ review.text }}</span></small>
+>>>>>>> Develop
                     <button>Add to Cart</button>
                 </div>
-            </a>
+            </div>
         </div>
     </div>

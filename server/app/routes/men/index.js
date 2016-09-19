@@ -14,7 +14,10 @@ router.get('/', function(request, response, next){
 });
 
 router.param('id', function (request, response, next, id){
-    Man.findById(id)
+    Man.findById(id, {include: [
+        {model: Tear}
+        ]
+    })
         .then(function (man){
             if (!man) response.status(404).send();
             request.manById = man;

@@ -3,16 +3,17 @@
     <div class = "row">
         <form name ="Filters">
             <select name="state" id="state" ng-model ="data.state">
-                <option selected="selected" disabled="disabled" >Select an Emotional State</option>
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="angry">Angry</option>
+                <option selected="selected" disabled="disabled" >Select a Category</option>
+                <option value="happy">Happy Tears</option>
+                <option value="sad">Sad Tears</option>
+                <option value="angry">Angry Tears</option>
             </select>
-            <select name="organic" id="organic" ng-model = "data.organic">
+            <input type="submit" value="Submit" ui-sref = "products.emotionProducts">
+            <!--<select name="organic" id="organic" ng-model = "data.organic">
                 <option selected="selected" disabled="disabled">Select Organic Tears!</option>
                 <option value="organic">Organic</option>
                 <option value="non-organic">Non-organic</option>
-            </select>
+            </select>-->
         </form>
         <ui-view></ui-view>
     </div>
