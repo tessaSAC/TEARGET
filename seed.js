@@ -1,5 +1,5 @@
-/* global require process console
-
+/* global require process console */
+/*
 This seed file is only a placeholder. It should be expanded and altered
 to fit the development of your application.
 
@@ -40,7 +40,7 @@ var seedUsers = function () {
             password: 'potus'
         },
         {
-            email: "rachel@rachel.com",
+            email: 'rachel@rachel.com',
             password: 'rachel',
             isAdmin: true
         },
@@ -149,7 +149,7 @@ var seedCart = function () {
             array: [4, 2, 1],
             is_open: true,
             userId: 1
-        }       
+        }
     ];
 
     var creatingCarts = cart.map(function (userObj) {
@@ -161,8 +161,8 @@ var seedCart = function () {
 };
 
 var seedReview = function(){
-    
-    var review =[
+
+    var review = [
         {
             rating: 4,
             text: "Nick's tears were amazing, they were super clear and smelled nice and salty.",
@@ -171,10 +171,10 @@ var seedReview = function(){
             userId: 4
         }
     ]
-    var creatingReviews = review.map(function (review){
-        return Review.create(review);
+    var creatingReviews = review.map(function (createReview){
+        return Review.create(createReview);
     });
-    
+
     return Promise.all(creatingReviews);
 }
 
