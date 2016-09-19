@@ -3,6 +3,20 @@ const router = express.Router();
 const User = require('../../../db/models/user');
 // const Cart = require('../../../db/models/cart');
 
+router.param('userId', function (request, response, next, id) { // 'userID' matches param reqs below || `id` injects ID;
+	User.findById(id)
+	.then(function(findingUser){
+		if (findingUser) {
+			request.foundUser = findingUser; // Put it on request because request is handled inside param
+			// Request goes through all the middleware; response goes through ONLY one
+			return next();
+		} else {
+			const err = new Error("User not found!");
+			err.status = 404;
+			throw err;
+		}
+	}).catch(next);
+});
 
 router.get('/', function(request, response, next) {
 
@@ -28,7 +42,7 @@ router.get('/:userId', function(request, response, next) {
 
 // returns the user's open cart
 router.get('/:userId/cart/', function(request, response, next) {
-
+		console.log(request.foundUser);
 	// let userId = request.params.userId;
 
 	// User.findById(userId)
