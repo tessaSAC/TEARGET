@@ -1,6 +1,6 @@
 <div class="row">
         <div class="col-xs-4" ng-repeat ="product in products">
-            <a class="thumbnail">
+            <a class="thumbnail" ui-sref="product({id: product.id})">
                 <img ng-src="{{product.pictureUrl}}">
                 <div class = "caption">
                     <h5>

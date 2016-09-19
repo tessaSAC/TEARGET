@@ -2,10 +2,7 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('review', {
-    user_name: {
-        type: Sequelize.STRING
-    },
-
+    
     rating: {
         type: Sequelize.INTEGER
     },
