@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-xs-4" ng-repeat ="user in users">
+        <a class="thumbnail" ui-sref="user({id: user.id})">
+            <div class = "caption">
+                <h5>{{ user.email }}</h5>
+                <button>Reset User's Password</button>
+                <button>Ban User!!!</button>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4" ng-repeat ="product in products">
+        <a class="thumbnail" ui-sref="product({id: product.id})">
+            <img ng-src="{{product.pictureUrl}}">
+            <div class = "caption">
+                <h5>
+                    <span>{{ product.title}}</span>
+                </h5>
+                <small>{{ product.description }}</small>
+                <small>Size: {{ product.size }}</small>
+                <small>Price: {{product.price | currency}}</small>
+                <small>Amount Left: {{ product.amount_left }}</small>
+                <button>Edit Product</button>
+                <button>Remove Product</button>
+            </div>
+        </a>
+    </div>
+</div>
