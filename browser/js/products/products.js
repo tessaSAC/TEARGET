@@ -1,12 +1,11 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('ProductBar', {
-       url: '/products',
+    $stateProvider.state('products', {
+       abstract: 'AllProducts',
        templateUrl : 'js/products/productBar.html',
 
     })
-    $stateProvider.state('AllProducts', {
-        url: '/',
-        parent: 'ProductBar',
+    $stateProvider.state('products.AllProducts', {
+        url: '/products',
         templateUrl: 'js/products/products.html',
         controller: 'ProductsCtrl',
         resolve: {
@@ -17,7 +16,7 @@ app.config(function ($stateProvider) {
     })
     $stateProvider.state('product' ,{
         url: '/:id',
-        parent: 'ProductBar',
+        parent: 'products',
         templateUrl: 'js/products/product.html',
         controller: 'ProductDetailCtrl',
         resolve: {
@@ -28,12 +27,23 @@ app.config(function ($stateProvider) {
     })
     $stateProvider.state('organicProducts', {
         url: '/organic/:bool',
-        parent: 'ProductBar',
+        parent: 'products',
         templateUrl: 'js/products/products.html', 
         controller: 'OrganicCtrl',
         resolve: {
             products: function(ProductFactory, $stateParams) {
                 return ProductFactory.getOrganicTears($stateParams.bool);
+            }
+        }
+    })
+    $stateProvider.state('emotionProducts', {
+        url: '/state/:emotion',
+        parent: 'products',
+        templateUrl: 'js/products/products.html',
+        controller: 'EmotionCtrl',
+        resolve: {
+            products: function(ProductFactory, $stateParams) {
+                return ProductFactory.getStateTears($stateParams.emotion);
             }
         }
     })
@@ -50,6 +60,10 @@ app.controller('ProductDetailCtrl', function($scope, product){
 });
 
 app.controller('OrganicCtrl', function($scope, products){
+    $scope.products = products;
+});
+
+app.controller('EmotionCtrl', function($scope, products){
     $scope.products = products;
 })
 
@@ -74,7 +88,7 @@ app.factory('ProductFactory', function($http){
             });
     };
     var getStateTears = function(state){
-       return $http.get('/api/tears/' + state)
+       return $http.get('/api/tears/?state=' + state)
             .then( function(response){
                 return response.data
             });

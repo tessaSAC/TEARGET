@@ -1,14 +1,14 @@
 <div>
     <h3>Products</h3>
     <div class = "row">
-        <form action="">
-            <select name="state" id="state">
+        <form name ="Filters">
+            <select name="state" id="state" ng-model ="data.state">
                 <option selected="selected" disabled="disabled" >Select an Emotional State</option>
                 <option value="happy">Happy</option>
                 <option value="sad">Sad</option>
                 <option value="angry">Angry</option>
             </select>
-            <select name="organic" id="organic">
+            <select name="organic" id="organic" ng-model = "data.organic">
                 <option selected="selected" disabled="disabled">Select Organic Tears!</option>
                 <option value="organic">Organic</option>
                 <option value="non-organic">Non-organic</option>
