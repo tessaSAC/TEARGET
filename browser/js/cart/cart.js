@@ -12,32 +12,59 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 	let userId = null;
 
 	$scope.cartArray = null;
-	$scope.itemNums = null;
+	$scope.itemNums = 0;
 	$scope.obj = null;
 	$scope.totalCents = 0;
 
 	if (Session.user) {
-		userId = Session.user.id;
-		cart = localStorage.cart;
-		$scope.cartArray = CartFactory.cartToArray(cart);
-		$scope.itemNums = $scope.cartArray.length;
 
-		CartFactory.getProductNames(userId, $scope.cartArray)
-		.then(function(names){
-			$scope.products = names;
-			return $scope.products;
-		})
-		.then(function(products){
-			$scope.obj = CartFactory.getProductObj(products);
-			$scope.totalCents = CartFactory.getTotalCents($scope.obj);
-		})
+		if (localStorage.cart){
+			userId = Session.user.id;
+			cart = localStorage.cart;
+			$scope.cartArray = CartFactory.cartToArray(cart);
+			if ($scope.cartArray){
+				$scope.itemNums = $scope.cartArray.length;
+			}
+
+			CartFactory.sendCart(userId, $scope.cartArray)
+			.then(function(){
+				return CartFactory.getProducts($scope.cartArray);
+			})
+			.then(function(names){
+				$scope.products = names;
+				return $scope.products;
+			})
+			.then(function(products){
+				$scope.obj = CartFactory.getProductObj(products);
+				$scope.totalCents = CartFactory.getTotalCents($scope.obj);
+			})
+		}
+	}
+
+	else if (localStorage.cart === undefined){
+		cart = null;
+		$scope.cartArray = null;
+		$scope.itemNums = 0;
 	}
 
 	else {
-		cart = localStorage.getItem('cart') || null;
-		$scope.itemNums = 0;
-		$scope.obj = {};
-		$scope.totalCents = 0;
+		cart = localStorage.getItem('cart');
+		console.log(cart);
+		if (cart !== 'null'){
+			console.log('MADE IT');
+			$scope.cartArray = CartFactory.cartToArray(cart);
+			$scope.itemNums = $scope.cartArray.length;
+
+			CartFactory.getProducts($scope.cartArray)
+			.then(function(names){
+				$scope.products = names;
+				return $scope.products;
+			})
+			.then(function(products){
+				$scope.obj = CartFactory.getProductObj(products);
+				$scope.totalCents = CartFactory.getTotalCents($scope.obj);
+			})
+		}
 	}
 
 })
@@ -57,19 +84,7 @@ app.factory('CartFactory', function($http, $q){
 
 	// save the cart to the db
 	CartFactory.sendCart = function(userId, cart){
-		return $http.post('/api/user/' + userId + '/cart', cart);
-	}
-
-	// get the total for the cart
-	CartFactory.getTotal = function(userId){
-		return $http.get('/api/user/' + userId + '/cart')
-		.then(function(cart){
-			cart = cart.data[0];
-			return cart;
-		})
-		.then(function(cart){
-			return cart;
-		})
+		return $http.post('/api/user/' + userId + '/cart', {cart: cart});
 	}
 
 	// convert the localStorage cart into an array of ints
@@ -81,28 +96,26 @@ app.factory('CartFactory', function($http, $q){
 			return Number(ele);
 		});
 		return strCart;
-	}
+	};
 
-	CartFactory.getProductNames = function(userId, cartArray){
 
-        return $http.post('/api/user/' + userId + '/cart', cartArray)
-        .then(function(){
+	CartFactory.getProducts = function(cartArray){
 
-			let promises = [];
-			cartArray.forEach(function(ele){
-				promises.push($http.get('/api/tears/' + ele));
-			});
+		let productPromises = [];
+		cartArray.forEach(function(productId){
+			productPromises.push($http.get('/api/tears/' + productId));
+		});
 
-			return $q.all(promises);
-        })
-        .then(function(products){
+		return $q.all(productPromises)
+		.then(function(products){
 			products = products.map(function(product){
 				return [product.data.title, product.data.price];
 			});
 
 			return products;
-        });
-	}
+		});
+	};
+
 
 	CartFactory.getProductObj = function(names){
 
@@ -127,7 +140,8 @@ app.factory('CartFactory', function($http, $q){
 		});
 
 		return obj;
-	}
+	};
+
 
 	CartFactory.getTotalCents = function(cartObj){
 
@@ -142,13 +156,13 @@ app.factory('CartFactory', function($http, $q){
 		return total;
 	};
 
-	// CartFactory.getCartSize = function(localStorageCart){
 
-	// };
-
-	// CartFactory.addToFrontEndCart = function(add){
-
-	// };
+	CartFactory.addItemToCart = function(id){
+		let cart = localStorage.cart || '';
+		if (cart !== '') cart += ',';
+		cart += id;
+		localStorage.setItem('cart', cart);
+	}
 
 	return CartFactory;
 

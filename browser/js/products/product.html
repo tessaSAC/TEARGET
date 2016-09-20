@@ -6,15 +6,15 @@
                     <h5>
                         <span>{{ product.title}}</span>
                     </h5>
-                    <a ui-sref="supplier({id: product.man.id})">Supplier: {{product.man.name}}</a>
-                    <small>{{ product.description }}</small>
-                    <small>Size: {{ product.size }}ml</small>
-                    <small>Price: {{product.price | currency }}</small>
-                    <small>Reviews: <span ng-repeat= "review in product.reviews">{{ review.text }}</span>
-                    <button>Add Review!</button>
-                    </small>
-
-                    <button>Add to Cart</button>
+                    <a ui-sref="supplier({id: product.man.id})">Supplier: {{product.man.name}}</a><br>
+                    <small>{{ product.description }}</small><br>
+                    <small>Size: {{ product.size }}ml</small><br>
+                    <small>Price: {{ product.price | currency }}</small><br>
+                    <small>Reviews: <span ng-repeat= "review in product.reviews"><br>{{ review.text }}
+                    <br>
+                     <button>Add a Review!</button>                   
+                    </span></small><br>
+                    <button ng-click="addItemToCart(product.id)">Add to Cart</button>
                 </div>
             </div>
         </div>

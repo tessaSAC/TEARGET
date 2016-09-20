@@ -23,7 +23,7 @@ app.controller('SignupCtrl', function ($rootScope, $scope, AuthService, $state, 
             return $http.get('/api/user/' + Session.user.id + '/cart')
         })
         .then(function(cart){
-            localStorage.setItem('cart', cart.data[0].array);
+            // localStorage.setItem('cart', cart.data[0].array);
             $state.go('home');
         })
         .catch(function () {

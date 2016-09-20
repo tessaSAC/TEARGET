@@ -23,8 +23,10 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Sessio
             return $http.get('/api/user/' + Session.user.id + '/cart')
         })
         .then(function(cart){
-            console.log('THIS IS THE CART:', cart);
-            localStorage.setItem('cart', cart.data[0].array);
+            if (cart.data[0]) {
+                localStorage.setItem('cart', cart.data[0].array);
+            }
+
             $state.go('home');
         })
         .catch(function () {
