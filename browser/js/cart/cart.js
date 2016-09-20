@@ -16,6 +16,16 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 	$scope.obj = null;
 	$scope.totalCents = 0;
 
+	$scope.increase = function(itemId){
+		CartFactory.increase(itemId);
+		$state.reload();
+	}
+
+	$scope.decrease = function(itemId){
+		CartFactory.decrease(itemId);
+		$state.reload();
+	}
+
 	if (Session.user) {
 
 		if (localStorage.cart){
@@ -49,9 +59,7 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 
 	else {
 		cart = localStorage.getItem('cart');
-		console.log(cart);
 		if (cart !== 'null'){
-			console.log('MADE IT');
 			$scope.cartArray = CartFactory.cartToArray(cart);
 			$scope.itemNums = $scope.cartArray.length;
 
@@ -66,6 +74,7 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 			})
 		}
 	}
+
 
 })
 
@@ -90,11 +99,17 @@ app.factory('CartFactory', function($http, $q){
 	// convert the localStorage cart into an array of ints
 	CartFactory.cartToArray = function(strCart){
 		if (!strCart) return null;
+		
+		if (strCart.indexOf(',') > -1) {
+			strCart = strCart.split(',');
+			strCart = strCart.map(function(ele){
+				return Number(ele);
+			});
+		}
+		else {
+			strCart = [ Number(strCart) ];
+		}
 
-		strCart = strCart.split(',');
-		strCart = strCart.map(function(ele){
-			return Number(ele);
-		});
 		return strCart;
 	};
 
@@ -109,7 +124,7 @@ app.factory('CartFactory', function($http, $q){
 		return $q.all(productPromises)
 		.then(function(products){
 			products = products.map(function(product){
-				return [product.data.title, product.data.price];
+				return [product.data.title, product.data.price, product.data.id];
 			});
 
 			return products;
@@ -118,6 +133,10 @@ app.factory('CartFactory', function($http, $q){
 
 
 	CartFactory.getProductObj = function(names){
+
+		let ids = names.map(function(name){
+			return name[2];
+		});
 
 		let prices = names.map(function(name){
 			return name[1];
@@ -134,9 +153,10 @@ app.factory('CartFactory', function($http, $q){
 				obj[name] = [];
 				obj[name].push(0);
 				obj[name].push(prices[index]);
+				obj[name].push(ids[index]);
 			}
-
 			obj[name][0] += 1;
+
 		});
 
 		return obj;
@@ -163,6 +183,25 @@ app.factory('CartFactory', function($http, $q){
 		cart += id;
 		localStorage.setItem('cart', cart);
 	}
+
+	CartFactory.decrease = function(itemId){
+		let cartArray = CartFactory.cartToArray(localStorage.cart);
+		let i = cartArray.indexOf(itemId);
+		if (i > -1){
+			cartArray.splice(i, 1);
+		}
+
+		localStorage.setItem('cart', cartArray);
+	};
+
+	CartFactory.increase = function(itemId){
+
+		let cartArray = CartFactory.cartToArray(localStorage.cart);
+		if (!cartArray) cartArray = [itemId];
+		else cartArray.push(itemId);
+		localStorage.setItem('cart', cartArray);
+
+	};
 
 	return CartFactory;
 
