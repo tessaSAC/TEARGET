@@ -3,7 +3,10 @@
 }
 
 body {
-  background: #fdfdfd;
+  background: #BED2D9;
+  color: #fff;
+  -moz-border-radius: 10px 20px 30px 0;
+  -webkit-border-radius: 36px 12px;
 }
 
 @mixin clearfix {
@@ -24,3 +27,4 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+
