@@ -11,7 +11,7 @@ router.param('userId', function (request, response, next, id) { // 'userID' matc
 			// Request goes through all the middleware; response goes through ONLY one
 			return next();
 		} else {
-			const err = new Error("User not found!");
+			const err = new Error('User not found!');
 			err.status = 404;
 			throw err;
 		}

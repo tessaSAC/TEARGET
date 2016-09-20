@@ -10,7 +10,10 @@
                     <small>{{ product.description }}</small>
                     <small>Size: {{ product.size }}ml</small>
                     <small>Price: {{product.price | currency }}</small>
-                    <small>Reviews: <span ng-repeat= "review in product.reviews">{{ review.text }}</span></small>
+                    <small>Reviews: <span ng-repeat= "review in product.reviews">{{ review.text }}</span>
+                    <button>Add Review!</button>
+                    </small>
+
                     <button>Add to Cart</button>
                 </div>
             </div>

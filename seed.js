@@ -1,5 +1,5 @@
-/* global require process console
-
+/* global require process console */
+/*
 This seed file is only a placeholder. It should be expanded and altered
 to fit the development of your application.
 
@@ -40,7 +40,7 @@ var seedUsers = function () {
             password: 'potus'
         },
         {
-            email: "rachel@rachel.com",
+            email: 'rachel@rachel.com',
             password: 'rachel',
             isAdmin: true
         },
@@ -96,31 +96,58 @@ var seedTears = function () {
 
     var tears = [
         {
-            title: 'Tears1',
+            title: 'Clexadia',
             state: 'sad',
             organic: false,
             amount_left: 2,
-            price: 2,
+            price: 0.20,
             size: 1,
             manId: 2
         },
         {
-            title: 'Tears2',
+            title: 'Veoienice',
             state: 'happy',
             organic: true,
             amount_left: 223,
-            price: 12,
+            price: 0.82,
             size: 551,
             manId: 3
         },
         {
-            title: 'Tears3',
+            title: 'Phireto',
             state: 'angry',
             organic: true,
             amount_left: 4,
-            price: 21,
+            price: 0.21,
             size: 7,
             manId: 1
+        },
+        {
+            title: 'Ieadia',
+            state: 'happy',
+            organic: false,
+            amount_left: 5,
+            price: 0.32,
+            size: 15,
+            manId: 4
+        },
+        {
+            title: 'Paoypedo',
+            state: 'sad',
+            organic: true,
+            amount_left: 10,
+            price: .50,
+            size: 10,
+            manId: 1
+        },
+        {
+            title: 'Keormodia',
+            state: 'angry',
+            organic: false,
+            amount_left: 8,
+            price: .75,
+            size: 50,
+            manId: 3
         }
     ];
 
@@ -149,7 +176,7 @@ var seedCart = function () {
             array: [4, 2, 1],
             is_open: true,
             userId: 1
-        }       
+        }
     ];
 
     var creatingCarts = cart.map(function (userObj) {
@@ -161,8 +188,8 @@ var seedCart = function () {
 };
 
 var seedReview = function(){
-    
-    var review =[
+
+    var review = [
         {
             rating: 4,
             text: "Nick's tears were amazing, they were super clear and smelled nice and salty.",
@@ -171,10 +198,10 @@ var seedReview = function(){
             userId: 4
         }
     ]
-    var creatingReviews = review.map(function (review){
-        return Review.create(review);
+    var creatingReviews = review.map(function (createReview){
+        return Review.create(createReview);
     });
-    
+
     return Promise.all(creatingReviews);
 }
 
