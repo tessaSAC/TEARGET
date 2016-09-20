@@ -57,80 +57,9 @@ app.run(function ($rootScope, AuthService, $state) {
 
 // SIMPLE APP CONTROLLER
 
-// app.controller('SimpleExampleController',function() { // When would I use `app` vs `FullstackGeneratedApp`?
-// 	console.log('In the controller!');
-// 	this.doCheckout = function(token) {
-// 		alert('Got Stripe token: ' + token.id);
-// 	};
-// });
-
-
-
-// CUSTOM APP CONTROLLER
-
-// app
-//   .config(function($routeProvider, StripeCheckoutProvider) {
-//     // You can use the provider to set defaults for all handlers
-//     // you create. Any of the options you'd pass to
-//     // StripeCheckout.configure() are valid.
-//     StripeCheckoutProvider.defaults({
-//       key: "YOUR_PUBLISHABLE_KEY_HERE"
-//     });
-
-//     $routeProvider
-//       .when("/",{
-//         templateUrl: "main.html"
-//       })
-//       .when("/buy",{
-//         templateUrl: "buy.html",
-//         controller: "CustomExampleController as ctrl",
-//         resolve: {
-//           // checkout.js isn't fetched until this is resolved.
-//           stripe: StripeCheckoutProvider.load
-//         }
-//       });
-//   })
-//   .run(function($log, StripeCheckout) {
-//     // You can set defaults here, too.
-//     StripeCheckout.defaults({
-//       opened: function() {
-//         $log.debug("Stripe Checkout opened");
-//       },
-
-//       closed: function() {
-//         $log.debug("Stripe Checkout closed");
-//       }
-//     });
-//   })
-//   .controller("CustomExampleController",function($log, StripeCheckout) {
-//     // You should configure a handler when the view is loaded,
-//     // just as you would if you were using checkout.js directly.
-//     var handler = StripeCheckout.configure({
-//         name: "Custom Example",
-//         token: function(token, args) {
-//           $log.debug("Got stripe token: " + token.id);
-//         }
-//     });
-
-//     this.doCheckout = function(token, args) {
-//     	console.log('Hi, Geoff!');
-
-//       var options = {
-//         description: "Ten dollahs!",
-//         amount: 1000
-//       };
-
-//       // The default handler API is enhanced by having open()
-//       // return a promise. This promise can be used in lieu of or
-//       // in addition to the token callback (or you can just ignore
-//       // it if you like the default API).
-//       //
-//       // The rejection callback doesn't work in IE6-7.
-//       handler.open(options)
-//         .then(function(result) {
-//           alert("Got Stripe token: " + result[0].id);
-//         },function() {
-//           alert("Stripe Checkout closed without making a sale :(");
-//         });
-//     };
-//   });
+app.controller('SimpleExampleController',function() { // When would I use `app` vs `FullstackGeneratedApp`?
+	console.log('In the controller!');
+	this.doCheckout = function(token) {
+		alert('Got Stripe token: ' + token.id);
+	};
+});

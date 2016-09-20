@@ -1,46 +1,35 @@
 'use strict';
-var chalk = require('chalk');
-var db = require('./db');
+
+// commands to create key.pem, cert.pem:
+// openssl genrsa -out key.pem 2048
+// openssl req -x509 -new -nodes -key key.pem -days 1024 -out cert.pem
+
+const chalk = require('chalk'),
+      db = require('./db');
 
 // HTTPS Server Stuff:
 const https = require('https'),
-	  fs = require('fs'),
-	  secureConfig = {
-	  	key: fs.readFileSync(__dirname + '/../key.pem'),
-	  	cert: fs.readFileSync(__dirname + '/../cert.pem')
-	  };
+      fs = require('fs'),
+      PORT = process.env.PORT || 1337,
+      secureConfig = {
+        key: fs.readFileSync(__dirname + '/../key.pem'),
+        cert: fs.readFileSync(__dirname + '/../cert.pem')
+      },
+      app = require('./app')(db);
 
-// Create a node server instance! cOoL!
-// var server = require('http').createServer();
 
-console.log(secureConfig);
-
-var createApplication = function () {
-    var app = require('./app')(db);
-
-    // HTTPS Server Stuff:
-    const PORT = process.env.PORT || 1337;
-    const server = https.createServer(secureConfig, app).listen(PORT, function() {
-    	console.log(chalk.green('HTTPS server started on port'), chalk.magenta(PORT));
+const server = https.createServer(secureConfig).listen(PORT, function(err) {
+    console.log(chalk.green('HTTPS server started on port'), chalk.magenta(PORT));
+    if (err) throw err;
+    db.sync()
+    .then(createApplication)
+    .catch(function(err) {
+        console.error(chalk.red(err.stack));
     });
-
-    server.on('request', app); // Attach the Express application.
-    require('./io')(server);   // Attach socket.io.
-};
-
-// var startServer = function () {
-
-//     var PORT = process.env.PORT || 1337;
-
-//     server.listen(PORT, function () {
-//         console.log(chalk.blue('Server started on port', chalk.magenta(PORT)));
-//     });
-
-// };
-
-db.sync()
-.then(createApplication)
-// .then(startServer)
-.catch(function (err) {
-    console.error(chalk.red(err.stack));
 });
+
+const createApplication = function() {
+    server.on('request', app);  // Attach the Express application
+    require('./io')(server);  // Attach socket.io
+    console.log('Made app!');
+}
