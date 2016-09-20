@@ -43,3 +43,15 @@ router.get('/:id/tears', function(request, response, next){
     })
     .catch(next);
 });
+
+router.delete('/:id', function(request, response, next){
+    Man.destroy({
+        where: {
+            id: request.params.id
+        }
+    })
+    .then(function(){
+        response.sendStatus(200)
+    })
+    .catch(next)
+})

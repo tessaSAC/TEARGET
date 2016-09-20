@@ -4,8 +4,6 @@
         <a class="thumbnail" ui-sref="user({id: user.id})">
             <div class = "caption">
                 <h5>{{ user.email }}</h5>
-                <button>Reset User's Password</button>
-                <button>Ban User!!!</button>
             </div>
         </a>
     </div>
@@ -24,7 +22,7 @@
                 <small>Price: {{product.price | currency}}</small>
                 <small>Amount Left: {{ product.amount_left }}</small>
                 <button>Edit Product</button>
-                <button>Remove Product</button>
+                <button ng-click="deleteProduct(product.id)">Remove Product</button>
             </div>
         </div>
     </div>
@@ -40,7 +38,7 @@
                 </h5>
                 <small>{{supplier.bio}}</small>
                 <button>Edit Supplier</button>
-                <button>Remove Supplier</button>
+                <button ng-click="deleteSupplier(supplier.id)">Remove Supplier</button>
             </div>
         </div>
     </div>

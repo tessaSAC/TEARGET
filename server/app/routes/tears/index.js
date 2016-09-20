@@ -67,22 +67,14 @@ router.get('/:id', function(request, response, next){
    response.send(request.tearById);
 });
 
-//NEED TO FIGURE OUT QUERY STRING PARAMS FOR THIS!!!!
-
-// router.get('/:state', function(request, response, next){
-//     Tear.findAll({where: {state: request.params.state}})
-//     .then(function(tears){
-//         if (!tears) response.status(404).end();
-//         response.json(tears);
-//     })
-//     .catch(next);
-// });
-
-// router.get('/:organic', function(request, response, next){
-//     Tear.findAll({where: {organic: request.params.state}})
-//     .then(function(tears){
-//         if (!tears) response.status(404).end();
-//         response.json(tears);
-//     })
-//     .catch(next);
-// });
+router.delete('/:id', function(request, response, next){
+    Tear.destroy({
+        where: {
+            id: request.params.id
+        }
+    })
+    .then(function(){
+        response.sendStatus(200)
+    })
+    .catch(next)
+})

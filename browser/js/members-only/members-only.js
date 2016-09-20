@@ -3,7 +3,12 @@ app.config(function ($stateProvider) {
     $stateProvider.state('admin', {
         url: '/admin',
         templateUrl: 'js/members-only/admin.html',
-        controller: function ($scope, UserFactory, ProductFactory, SupplierFactory) {
+        controller: 'AdminCtrl'
+
+    });
+});
+
+app.controller('AdminCtrl', function ($scope, $state, UserFactory, ProductFactory, SupplierFactory) {
             UserFactory.getUsers()
             .then(function (users){
                 $scope.users = users;
@@ -16,10 +21,15 @@ app.config(function ($stateProvider) {
             .then( function(suppliers){
                 $scope.suppliers = suppliers
             })
-        }
-
-    });
-});
+            $scope.deleteSupplier = function(id){
+                 SupplierFactory.deleteOne(id)
+                 .then($state.reload());
+            };
+            $scope.deleteProduct = function(id){
+                ProductFactory.deleteOne(id)
+                .then($state.reload())
+            }
+        })
 
 app.factory('UserFactory', function ($http) {
 
