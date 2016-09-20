@@ -1,18 +1,19 @@
 <form action="">
     <label for="Name">
-        Name  <input type="text">
+        Name  <input type="text" ng-model="shipping.name">
     </label><br />
     <label for="Address">
-        Shipping Address <input type="text"> 
+        Shipping Address <input type="text" ng-model="shipping.address">  
     </label><br />
     <label for="City">
-        City <input type ="text">
+        City <input type ="text" ng-model = "shipping.city">
     </label><br />
     <label for="State">
-        State: <input type="text">
+        State: <input type="text" ng-model="shipping.state">
     </label><br />
     <label for="Zip">
-        Zip Code: <input type="text">
+        Zip Code: <input type="text" ng-model="shipping.zip">
     </label>
-    
+    <br>
+    <button ng-click="update(shipping)"> Submit </button>
 </form>

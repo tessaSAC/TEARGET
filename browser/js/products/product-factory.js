@@ -23,9 +23,12 @@ app.factory('ProductFactory', function($http){
                 return response.data
             });
     };
+    var deleteOne = function(id){
+        return $http.delete('/api/tears/' + id)
+    }
 
      return {
-        getAll, getOneTear, getStateTears, getOrganicTears,
+        getAll, getOneTear, getStateTears, getOrganicTears, deleteOne
     };
 
 });

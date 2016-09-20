@@ -25,6 +25,7 @@ var Men = db.model('man');
 var Tears = db.model('tear');
 var Cart = db.model('cart');
 var Review = db.model('review');
+var Shipping = db.model('shipping')
 
 var Promise = require('sequelize').Promise;
 
@@ -42,12 +43,12 @@ var seedUsers = function () {
         {
             email: 'rachel@rachel.com',
             password: 'rachel',
-            isAdmin: true
+            is_admin: true
         },
         {
             email: 'tester@tster.com',
             password: 'tester',
-            isAdmin: false
+            is_admin: false
         }
     ];
 
@@ -64,29 +65,40 @@ var seedMen = function () {
     var men = [
         {
             name: 'Nick',
-            bio: 'Nick likes to cry.',
+            bio: 'Nick likes to cry for money.  His hobbies include backpacking, scuba diving and spinning yarn',
             pictureUrl: 'https://www.placecage.com/g/155/300'
         },
         {
             name: 'Obama',
-            bio: 'POTUS',
+            bio: 'POTUS. Enjoys hula hooping with FLOTUS and walking Bo.',
             pictureUrl: 'http://ifreestockphotos.com/wp-content/uploads/2016/05/barack-obama-free-stock-photos-768x960.jpg'
         },
         {
             name: 'Ben',
             bio: 'Might be a dog. Woof!',
-            pictureUrl: 'https://thumbs.dreamstime.com/x/man-dog-park-central-asian-shepherd-walk-keeps-leash-35341989.jpg'
+            pictureUrl: 'https://static.pexels.com/photos/91224/pexels-photo-91224-medium.jpeg'
         },
         {
             name: 'Steven',
-            bio: 'Tall, enjoys sappy movies and cutting onions.',
+            bio: 'Tall, enjoys sappy movies, cutting onions and raising alpacas.',
             pictureUrl: 'http://www.stevensegallery.com/g/140/100'
+        },
+        {
+            name: 'Roscoe',
+            bio: "Roscoe loves providing tears for Tearget. Some of his favorite pastimes are cooking, football and pogs.",
+            pictureUrl: "https://static.pexels.com/photos/1543/landscape-nature-man-person-medium.jpg"
+        },
+        {
+            name: 'Guy',
+            bio: 'Guy is a shy man who has recently begun providing tears for us.  He enjoys puppies, sailing and bow ties.',
+            pictureUrl: "https://static.pexels.com/photos/1702/bow-tie-businessman-fashion-man-medium.jpg"
         }
     ];
 
     var creatingMen = men.map(function (userObj) {
         return Men.create(userObj);
     });
+
 
     return Promise.all(creatingMen);
 
@@ -124,7 +136,7 @@ var seedTears = function () {
         },
         {
             title: 'Ieadia',
-            state: 'happy',
+            state: 'sad',
             organic: false,
             amount_left: 5,
             price: 0.32,
@@ -136,7 +148,7 @@ var seedTears = function () {
             state: 'sad',
             organic: true,
             amount_left: 10,
-            price: .50,
+            price: 0.50,
             size: 10,
             manId: 1
         },
@@ -145,10 +157,47 @@ var seedTears = function () {
             state: 'angry',
             organic: false,
             amount_left: 8,
-            price: .75,
+            price: 0.75,
             size: 50,
             manId: 3
+        },
+        {
+            title: 'Claepyle',
+            state: 'angry',
+            organic: false,
+            amount_left: 4,
+            price: 0.25,
+            size: 5,
+            manId: 6
+        },
+        {
+            title: 'Oekireto',
+            state: 'sad',
+            organic: true,
+            amount_left: 2,
+            price: 0.30,
+            size: 6,
+            manId: 5
+        },
+        {
+            title: 'Smaociliope',
+            state: 'angry',
+            organic: false,
+            amount_left: 10,
+            price: 0.40,
+            size: 34,
+            manId: 3
+        },
+        {
+            title: 'Tusleia',
+            state: 'happy',
+            organic: true,
+            amount_left: 2,
+            price: 0.99,
+            size: 40,
+            manId: 2
         }
+
     ];
 
     var creatingTears = tears.map(function (userObj) {
@@ -203,6 +252,23 @@ var seedReview = function(){
     });
 
     return Promise.all(creatingReviews);
+}
+
+var seedShpping = function(){
+    var shipping = [
+        {
+            name: "Rachel Addleman",
+            address: "209 West 108 Street",
+            city: 'New York',
+            state: 'NY',
+            zip: 10025,
+            userId: 3
+        }
+    ]
+    var creatingShipping= review.map(function (createShipping){
+        return Shipping.create(createShipping)
+    });
+    return Promise.all(creatingShipping);
 }
 
 

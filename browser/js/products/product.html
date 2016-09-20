@@ -9,11 +9,12 @@
                     <a ui-sref="supplier({id: product.man.id})">Supplier: {{product.man.name}}</a><br>
                     <small>{{ product.description }}</small><br>
                     <small>Size: {{ product.size }}ml</small><br>
-                    <small>Price: {{ product.price | currency }}</small><br><br>
-                    <button class="btn btn-default">Add a Review!</button>                   
-                    <button ng-click="addItemToCart(product.id)" class="btn btn-default">Add to Cart</button>
-                    <!-- <small>Reviews: <span ng-repeat= "review in product.reviews"><br>{{ review.text }} -->
-                    </span><br>
+                    <small>Price: {{ product.price | currency }}</small><br>
+                    <small>Reviews: <span ng-repeat= "review in product.reviews">
+                        <br>{{ review.text }}
+                    <br>               
+                    </span></small><br>
+                    <button ng-click="addItemToCart(product.id)">Add to Cart</button>
                 </div>
             </div>
         </div>
