@@ -1,6 +1,7 @@
 <div>
-    <h3>Products</h3>
+    <h1>Products</h1>
     <div class = "row">
+        <center>
         <form name ="Filters">
             <select name="state" id="state" ng-model ="category">
                 <option selected="selected" disabled="disabled" >Select a Category</option>
@@ -8,15 +9,14 @@
                 <option value="sad">Sad Tears</option>
                 <option value="angry">Angry Tears</option>
             </select>
-            <input type="submit" value="Submit" ui-sref= "emotionProducts({emotion: category})">
+            <input type="submit" value="Filter" class="btn btn-default" ui-sref= "emotionProducts({emotion: category})">
             <!--<label>
                 <input type="radio" ng-model="organic" value="true">
                 Organic
             </label><br/>
             <label type="radio" ng-model="organic" value="false"> Non-Organic </label>-->
-        </form>
-        <a ui-sref="search">SEARCH</a>
-        
+        </form> <br><a ui-sref="search">SEARCH OUR PRODUCTS</a><br><br>
+        </center>
         <ui-view></ui-view>
     </div>
     

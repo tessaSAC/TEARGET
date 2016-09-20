@@ -35,6 +35,33 @@ body {
   margin: 0 auto;
 }
 
+input {
+  color: #BED2D9;
+}
+
+button {
+  color: #BED2D9;
+}
+
+#about-img {
+    height: auto; 
+    width: auto; 
+    max-width: 600px; 
+    max-height: 300px;
+}
+
+#id-text {
+    float: left;
+}
+
+#about {
+    font-size: 15px;
+}
+
+.review-box{
+  color: black;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
