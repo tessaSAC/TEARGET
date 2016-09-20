@@ -15,7 +15,7 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/suppliers/supplier.html',
         controller: 'SupplierCtrl',
         resolve: {
-            supplier : function(SupplierFactory, $stateParams){
+            supplier: function(SupplierFactory, $stateParams){
                 return SupplierFactory.getOneMan($stateParams.id);
             }
         }

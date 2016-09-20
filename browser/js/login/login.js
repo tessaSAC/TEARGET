@@ -26,10 +26,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Sessio
             if (cart.data[0]) {
                 localStorage.setItem('cart', cart.data[0].array);
             }
-            else {
-                console.log('ELSE');
-            }
-            // else if (localStorage.cart) localStorage.deleteItem('cart');
             $state.go('home');
         })
         .catch(function () {

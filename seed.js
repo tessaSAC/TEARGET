@@ -38,6 +38,16 @@ var seedUsers = function () {
         {
             email: 'obama@gmail.com',
             password: 'potus'
+        },
+        {
+            email: "rachel@rachel.com",
+            password: 'rachel',
+            isAdmin: true
+        },
+        {
+            email: 'tester@tster.com',
+            password: 'tester',
+            isAdmin: false
         }
     ];
 
@@ -66,6 +76,11 @@ var seedMen = function () {
             name: 'Ben',
             bio: 'Might be a dog. Woof!',
             pictureUrl: 'https://thumbs.dreamstime.com/x/man-dog-park-central-asian-shepherd-walk-keeps-leash-35341989.jpg'
+        },
+        {
+            name: 'Steven',
+            bio: 'Tall, enjoys sappy movies and cutting onions.',
+            pictureUrl: 'http://www.stevensegallery.com/g/140/100'
         }
     ];
 
@@ -86,7 +101,8 @@ var seedTears = function () {
             organic: false,
             amount_left: 2,
             price: 2,
-            size: 1
+            size: 1,
+            manId: 2
         },
         {
             title: 'Tears2',
@@ -94,7 +110,8 @@ var seedTears = function () {
             organic: true,
             amount_left: 223,
             price: 12,
-            size: 551
+            size: 551,
+            manId: 3
         },
         {
             title: 'Tears3',
@@ -102,7 +119,8 @@ var seedTears = function () {
             organic: true,
             amount_left: 4,
             price: 21,
-            size: 7
+            size: 7,
+            manId: 1
         }
     ];
 
@@ -119,15 +137,18 @@ var seedCart = function () {
     var cart = [
         {
             array: [1, 2, 3],
-            is_open: true
+            is_open: true,
+            userId: 4
         },
         {
             array: [2, 2, 3],
-            is_open: false
+            is_open: false,
+            userId: 3
         },
         {
             array: [4, 2, 1],
-            is_open: true
+            is_open: true,
+            userId: 1
         }       
     ];
 
@@ -144,7 +165,10 @@ var seedReview = function(){
     var review =[
         {
             rating: 4,
-            text: "Nick's tears were amazing, they were super clear and smelled nice and salty." 
+            text: "Nick's tears were amazing, they were super clear and smelled nice and salty.",
+            date: new Date,
+            tearId: 3,
+            userId: 4
         }
     ]
     var creatingReviews = review.map(function (review){
