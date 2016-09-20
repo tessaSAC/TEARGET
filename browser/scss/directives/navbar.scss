@@ -1,9 +1,9 @@
 navbar {
 
   display: block;
-  background: white;
-  border-bottom: 1px solid black;
-  box-shadow: 1px 1px 14px -3px black;
+  background: #F7F9FE;      /*NAVBAR BG COLOR*/
+  // border-bottom: 1px solid black;       /*NAVBAR BOTTOM BORDER*/
+  box-shadow: 1px 1px 14px -3px #3f6873;      /*NAVBAR SHADOW*/
 
   .container {
     width: 91%;
@@ -18,7 +18,7 @@ navbar {
   }
 
   a {
-    color: black;
+    color: #01313A;        /*NAVLINK BASE COLOR*/
     font-size: 16px;
   }
 
@@ -26,11 +26,11 @@ navbar {
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: darken(#f31214, 10%);
+      color: #CBDBE0;        /*ACTIVE LINK*/
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: #FB983F;        /*NAVBAR LINK HOVER COLOR*/
     }
     &:focus {
       background: none;
@@ -39,10 +39,15 @@ navbar {
 
   .login-button {
     float: right;
-    border: 1px solid black;
+    border: 1px solid #BED2D9;     /*LOGIN BUTTON BORDER*/
     margin-top: 10px;
     background: none;
     outline: none !important;
+    color: #CBDBE0;   /*LOGIN TEXT COLOUR*/
+  }
+
+  .login-button:hover {
+    color: #01313A;        /*LOGIN BUTTON LINK HOVER COLOR*/
   }
 
   .welcome {
