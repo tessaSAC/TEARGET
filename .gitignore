@@ -5,3 +5,4 @@ public
 .DS_Store
 coverage
 key.pem
+cert.pem

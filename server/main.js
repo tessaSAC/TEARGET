@@ -13,6 +13,8 @@ const https = require('https'),
 // Create a node server instance! cOoL!
 // var server = require('http').createServer();
 
+console.log(secureConfig);
+
 var createApplication = function () {
     var app = require('./app')(db);
 
