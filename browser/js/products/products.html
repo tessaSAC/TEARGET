@@ -1,17 +1,18 @@
+
 <div class="row">
         <div class="col-xs-4" ng-repeat ="product in products">
-            <a class="thumbnail">
+            <div  class="thumbnail">
                 <img ng-src="{{product.pictureUrl}}">
                 <div class = "caption">
                     <h5>
-                        <span>{{ product.title}}</span>
+                        <a ui-sref="product({id: product.id})">{{ product.title}}</a>
                     </h5>
-                    <small>{{ product.description }}</small>
-                    <small>Size: {{ product.size }}</small>
+                    <small>{{ product.description }}</small><br>
+                    <small>Size: {{ product.size }}</small><br>
                     <small>Price: {{product.price | currency}}</small>
 
                 </div>
-            </a>
+            </div>
         </div>
     </div>
     

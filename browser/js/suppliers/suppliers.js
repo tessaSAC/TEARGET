@@ -15,7 +15,7 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/suppliers/supplier.html',
         controller: 'SupplierCtrl',
         resolve: {
-            supplier : function(SupplierFactory, $stateParams){
+            supplier: function(SupplierFactory, $stateParams){
                 return SupplierFactory.getOneMan($stateParams.id);
             }
         }
@@ -43,9 +43,13 @@ app.factory('SupplierFactory', function($http){
             .then( function(response){
                 return response.data;
             })
+    };
+    var deleteOne = function(id){
+        return $http.delete('/api/men/' + id)
     }
     return {
-        getAll: getAll,
-        getOneMan: getOneMan
+        getAll,
+        getOneMan,
+        deleteOne
     }
 })

@@ -1,0 +1,19 @@
+<label for="">SEARCH: <input ng-model="searchText"></label>
+
+<div class="row">
+        <div class="col-xs-4" ng-repeat ="product in products | filter:searchText">
+            <a class="thumbnail" ui-sref="product({id: product.id})">
+                <img ng-src="{{product.pictureUrl}}">
+                <div class = "caption">
+                    <h5>
+                        <span>{{ product.title}}</span>
+                    </h5>
+                    <small>{{ product.description }}</small>
+                    <small>Size: {{ product.size }}</small>
+                    <small>Price: {{product.price | currency}}</small>
+
+                </div>
+            </a>
+        </div>
+    </div>
+    

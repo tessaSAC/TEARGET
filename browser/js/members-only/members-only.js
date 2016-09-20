@@ -1,32 +1,46 @@
 app.config(function ($stateProvider) {
 
-    $stateProvider.state('membersOnly', {
-        url: '/members-area',
-        template: '<img ng-repeat="item in stash" width="300" ng-src="{{ item }}" />',
-        controller: function ($scope, SecretStash) {
-            SecretStash.getStash().then(function (stash) {
-                $scope.stash = stash;
-            });
-        },
-        // The following data.authenticate is read by an event listener
-        // that controls access to this state. Refer to app.js.
-        data: {
-            authenticate: true
-        }
-    });
+    $stateProvider.state('admin', {
+        url: '/admin',
+        templateUrl: 'js/members-only/admin.html',
+        controller: 'AdminCtrl'
 
+    });
 });
 
-app.factory('SecretStash', function ($http) {
+app.controller('AdminCtrl', function ($scope, $state, UserFactory, ProductFactory, SupplierFactory) {
+            UserFactory.getUsers()
+            .then(function (users){
+                $scope.users = users;
+            });
+            ProductFactory.getAll()
+            .then( function(products){
+                $scope.products = products;
+            });
+            SupplierFactory.getAll()
+            .then( function(suppliers){
+                $scope.suppliers = suppliers
+            })
+            $scope.deleteSupplier = function(id){
+                 SupplierFactory.deleteOne(id)
+                 .then($state.reload());
+            };
+            $scope.deleteProduct = function(id){
+                ProductFactory.deleteOne(id)
+                .then($state.reload())
+            }
+        })
 
-    var getStash = function () {
-        return $http.get('/api/members/secret-stash').then(function (response) {
+app.factory('UserFactory', function ($http) {
+
+    var getUsers = function () {
+        return $http.get('/api/user').then(function (response) {
             return response.data;
         });
     };
 
     return {
-        getStash: getStash
+        getUsers
     };
 
 });

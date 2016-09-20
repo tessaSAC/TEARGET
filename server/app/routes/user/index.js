@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../../db/models/user');
-// const Cart = require('../../../db/models/cart');
+const Cart = require('../../../db/models/cart');
 
 router.param('userId', function (request, response, next, id) { // 'userID' matches param reqs below || `id` injects ID;
 	User.findById(id)
@@ -11,7 +11,7 @@ router.param('userId', function (request, response, next, id) { // 'userID' matc
 			// Request goes through all the middleware; response goes through ONLY one
 			return next();
 		} else {
-			const err = new Error("User not found!");
+			const err = new Error('User not found!');
 			err.status = 404;
 			throw err;
 		}
@@ -35,7 +35,7 @@ router.get('/:userId', function(request, response, next) {
 	// .then(function(user) {
 	// 	response.json(user);
 	// })
-	// .catch(next);
+	// .catch(next-);
 
 	response.send(request.foundUser);
 });
@@ -100,10 +100,14 @@ router.post('/:userId/cart/', function(request, response, next) {
 	})
 	.then(function(carts){
 		let cart = carts[0];
-		return cart.update({array: cartArray});
+		if (cart) {
+			return cart.update({array: cartArray});
+		}
+		else {
+			return Cart.create({is_open: true, userId: userId, array: cartArray});
+		}
 	})
 	.then(function(cart){
-		// console.log(cart.array);
 		response.send(cart.array);
 	})
 	.catch(next);

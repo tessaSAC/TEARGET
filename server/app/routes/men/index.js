@@ -14,7 +14,10 @@ router.get('/', function(request, response, next){
 });
 
 router.param('id', function (request, response, next, id){
-    Man.findById(id)
+    Man.findById(id, {include: [
+        {model: Tear}
+        ]
+    })
         .then(function (man){
             if (!man) response.status(404).send();
             request.manById = man;
@@ -40,3 +43,15 @@ router.get('/:id/tears', function(request, response, next){
     })
     .catch(next);
 });
+
+router.delete('/:id', function(request, response, next){
+    Man.destroy({
+        where: {
+            id: request.params.id
+        }
+    })
+    .then(function(){
+        response.sendStatus(200)
+    })
+    .catch(next)
+})
