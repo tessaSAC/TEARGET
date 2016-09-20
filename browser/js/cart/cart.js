@@ -12,7 +12,7 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 	let userId = null;
 
 	$scope.cartArray = null;
-	$scope.itemNums = null;
+	$scope.itemNums = 0;
 	$scope.obj = null;
 	$scope.totalCents = 0;
 
@@ -37,8 +37,13 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 		})
 	}
 
-	else if (!(localStorage.getItem('cart') === null)){
-		console.log('YOU MADE IT HERE');
+	else if (localStorage.cart === undefined){
+		cart = localStorage.getItem('cart') || null;
+		$scope.cartArray = CartFactory.cartToArray(cart);
+		$scope.itemNums = 0;
+	}
+
+	else {
 		cart = localStorage.getItem('cart') || null;
 		$scope.cartArray = CartFactory.cartToArray(cart);
 		$scope.itemNums = $scope.cartArray.length;
@@ -50,12 +55,8 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 		})
 		.then(function(products){
 			$scope.obj = CartFactory.getProductObj(products);
-			$scope.totalCents = CartFactory.getTotalCents($scope.obj) || 0;
+			$scope.totalCents = CartFactory.getTotalCents($scope.obj);
 		})
-	}
-
-	else {
-
 	}
 
 })

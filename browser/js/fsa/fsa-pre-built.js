@@ -98,7 +98,7 @@
         this.logout = function () {
             return $http.get('/logout').then(function () {
                 Session.destroy();
-                localStorage.setItem('cart', null);
+                localStorage.removeItem('cart');
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
             });
         };
