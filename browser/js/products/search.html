@@ -1,4 +1,7 @@
-<label for="">SEARCH: <input ng-model="searchText"></label>
+<center><label for="">
+<h2>SEARCH:</h2> <br>
+<input ng-model="searchText" class="form-control">
+</label></center><br><br><br>
 
 <div class="row">
         <div class="col-xs-4" ng-repeat ="product in products | filter:searchText">
@@ -8,12 +11,12 @@
                     <h5>
                         <span>{{ product.title}}</span>
                     </h5>
-                    <small>{{ product.description }}</small>
-                    <small>Size: {{ product.size }}</small>
+                    <small>{{ product.description }}</small><br>
+                    <small>Size: {{ product.size }}</small><br>
                     <small>Price: {{product.price | currency}}</small>
 
                 </div>
             </a>
         </div>
-    </div>
+</div>
     
