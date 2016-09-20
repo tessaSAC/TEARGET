@@ -37,6 +37,7 @@ body {
 
 input {
   color: #BED2D9;
+  clear: both;
 }
 
 button {
@@ -61,6 +62,17 @@ button {
 .review-box{
   color: black;
 }
+
+#signup-form{
+  width: 60%;
+  margin: 0 auto;
+}
+
+label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}​
 
 @import 'directives/main';
 @import 'home/main';
