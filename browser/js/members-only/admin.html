@@ -1,4 +1,5 @@
 <div class="row">
+    <h3>USERS</h3>
     <div class="col-xs-4" ng-repeat ="user in users">
         <a class="thumbnail" ui-sref="user({id: user.id})">
             <div class = "caption">
@@ -10,12 +11,13 @@
     </div>
 </div>
 <div class="row">
+    <h3>Products</h3>
     <div class="col-xs-4" ng-repeat ="product in products">
-        <a class="thumbnail" ui-sref="product({id: product.id})">
+        <div class="thumbnail" >
             <img ng-src="{{product.pictureUrl}}">
             <div class = "caption">
                 <h5>
-                    <span>{{ product.title}}</span>
+                    <a ui-sref="product({id: product.id})">{{ product.title}}</a>
                 </h5>
                 <small>{{ product.description }}</small>
                 <small>Size: {{ product.size }}</small>
@@ -24,6 +26,22 @@
                 <button>Edit Product</button>
                 <button>Remove Product</button>
             </div>
-        </a>
+        </div>
+    </div>
+</div>
+<div class = "row">
+    <h3>Suppliers</h3>
+    <div class="col-xs-4" ng-repeat="supplier in suppliers">
+        <div class="thumbnail">
+            <img ng-src="{{supplier.pictureUrl}}">
+            <div class= "caption">
+                <h5>
+                    <a ui-sref="supplier({id: supplier.id})">{{supplier.name}}</a>
+                </h5>
+                <small>{{supplier.bio}}</small>
+                <button>Edit Supplier</button>
+                <button>Remove Supplier</button>
+            </div>
+        </div>
     </div>
 </div>
