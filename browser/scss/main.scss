@@ -62,6 +62,11 @@ button {
   color: black;
 }
 
+#signup-form{
+  width: 60%;
+  margin: 0 auto;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
