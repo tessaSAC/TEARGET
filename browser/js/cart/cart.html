@@ -2,7 +2,7 @@
 <H2> {{ products }} </H2>
 <H2> {{ obj }} </H2> -->
 
-<H3> You have {{ itemNums }} items in your cart. Your cart total is {{ totalCents | currency }}. </H3>
+<H3> You have {{ itemNums }} item(s) in your cart. Your cart total is {{ totalCents | currency }}. </H3>
 <table class='table' ng-show="cartArray.length"
   <thead>
     <tr>
@@ -13,9 +13,10 @@
   </thead>
   <tbody>
     <tr ng-repeat="(key, item) in obj">
-      <td> {{ key }}</td>
-      <td>{{ item[0] }}</td>
+      <td> <a ui-sref="product({id : item[2]})">{{ key }}</a></td>
+      <td><button ng-click="decrease(item[2])">-</button>   {{ item[0] }}   <button ng-click="increase(item[2])">+</button></td>
       <td> {{ item[1] | currency }}</td>
     </tr>
   </tbody>
 </table>
+<button ui-sref="checkout">Checkout</button>
