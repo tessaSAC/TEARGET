@@ -10,10 +10,6 @@
                     <small>{{ product.description }}</small><br>
                     <small>Size: {{ product.size }}ml</small><br>
                     <small>Price: {{ product.price | currency }}</small><br>
-                    <small>Reviews: <span ng-repeat= "review in product.reviews">
-                        <br>{{ review.text }}
-                    <br>               
-                    </span></small><br>
                     <button ng-click="addItemToCart(product.id)">Add to Cart</button>
                 </div>
             </div>
@@ -23,7 +19,7 @@
             <div class = "caption">
                 <p>Reviews:</p>
                 <span ng-show = "product.reviews.length == 0">This product has no reviews!</span>
-                <span ng-repeat= "review in product.reviews"><br> {{ review.text }} </span>
+                <span ng-repeat= "review in product.reviews">{{ review.text }}<br> </span>
             <div>
             </div>
         </div>

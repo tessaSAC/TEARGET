@@ -7,15 +7,15 @@ app.config(function ($stateProvider) {
     });
     $stateProvider.state('success', {
         url: '/checkout/success',
-        templateUrl: 'js/checkout/success/html',
+        templateUrl: '/js/checkout/success.html',
         controller: 'SuccessCtrl'
     })
 });
 
 
-app.controller('CheckoutCtrl', function($scope, CheckoutFactory){
+app.controller('CheckoutCtrl', function($scope, CheckoutFactory, $state){
     $scope.update = function(shipping){ 
-        return CheckoutFactory.create(shipping);
+        CheckoutFactory.create(shipping)
     }
 });
 
@@ -25,5 +25,9 @@ app.factory('CheckoutFactory', function($http, Session){
             data.userId = Session.user.id
         }
         $http.post('/api/shipping', data);
+    }
+
+    return {
+        create
     }
 });
