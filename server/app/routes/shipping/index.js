@@ -13,7 +13,8 @@ router.get('/', function(request, response, next){
 });
 
 router.post('/', function(request, response, next) {
-    Shipping.create(request.data)
+    console.log("THIS IS THE POST REQUEST", request);
+    Shipping.create(request.body)
     .then(function(address){
         if (address) response.sendStatus(201)
     })

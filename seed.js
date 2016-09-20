@@ -25,6 +25,7 @@ var Men = db.model('man');
 var Tears = db.model('tear');
 var Cart = db.model('cart');
 var Review = db.model('review');
+var Shipping = db.model('shipping')
 
 var Promise = require('sequelize').Promise;
 
@@ -203,6 +204,23 @@ var seedReview = function(){
     });
 
     return Promise.all(creatingReviews);
+}
+
+var seedShpping = function(){
+    var shipping = [
+        {
+            name: "Rachel Addleman",
+            address: "209 West 108 Street",
+            city: 'New York',
+            state: 'NY',
+            zip: 10025,
+            userId: 3
+        }
+    ]
+    var creatingShipping= review.map(function (createShipping){
+        return Shipping.create(createShipping)
+    });
+    return Promise.all(creatingShipping);
 }
 
 

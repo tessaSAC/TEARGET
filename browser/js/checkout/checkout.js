@@ -5,24 +5,25 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/checkout/checkout.html',
         controller: 'CheckoutCtrl'
     });
+    $stateProvider.state('success', {
+        url: '/checkout/success',
+        templateUrl: 'js/checkout/success/html',
+        controller: 'SuccessCtrl'
+    })
 });
 
-app.controller('CheckoutCtrl', function ($scope){
-    $scope.submit = CheckoutFactory.create({
-        name: $scope.name,
-        address: $scope.address,
-        city: $scope.city,
-        state: $scope.state,
-        zip: $scope.zip
-    })
-})
 
-app.factory('CheckoutFactory', function($http){
-   var create = function(data){
-       console.log(data);
-       $http.post('api/shipping/', data)
-   }
+app.controller('CheckoutCtrl', function($scope, CheckoutFactory){
+    $scope.update = function(shipping){ 
+        return CheckoutFactory.create(shipping);
+    }
+});
 
-   return {create}
-})
-
+app.factory('CheckoutFactory', function($http, Session){
+    var create = function(data){
+        if (Session.user){
+            data.userId = Session.user.id
+        }
+        $http.post('/api/shipping', data);
+    }
+});

@@ -2,31 +2,21 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('shipping', {
-   Name: {
+   name: {
         type: Sequelize.TEXT
     },
 
-    Address: {
+    address: {
         type: Sequelize.TEXT
     },
 
-    City: {
+    city: {
         type: Sequelize.TEXT
 },
-    State: {
+    state: {
         type: Sequelize.TEXT
     },
-    Zip : {
+    zip: {
         type: Sequelize.INTEGER
     }
-}, {
-    instanceMethods: {
-
-    },
-    classMethods: {
-
-    },
-    hooks: {
-
-    }
-});
+})
