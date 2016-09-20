@@ -18,7 +18,7 @@ body {
 }
 
 #main {
-  padding-top: 60px;
+  padding: 5%;
   margin: 0 auto;
 }
 
@@ -27,4 +27,6 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+// @import 'webfont-aaargh';
+// @include font-face('aaarghnormal', font-files('webfont-aaargh'))
 
