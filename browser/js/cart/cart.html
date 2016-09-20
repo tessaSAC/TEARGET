@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="(key, item) in obj">
-      <td> {{ key }}</td>
+      <td> <a ui-sref="product({id : item[2]})">{{ key }}</a></td>
       <td><button ng-click="decrease(item[2])">-</button>   {{ item[0] }}   <button ng-click="increase(item[2])">+</button></td>
       <td> {{ item[1] | currency }}</td>
     </tr>
