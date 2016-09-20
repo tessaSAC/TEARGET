@@ -18,45 +18,53 @@ app.controller('CartCtrl', function($scope, $state, CartFactory, Session){
 
 	if (Session.user) {
 
-		userId = Session.user.id;
-		cart = localStorage.cart;
-		$scope.cartArray = CartFactory.cartToArray(cart);
-		$scope.itemNums = $scope.cartArray.length;
+		if (localStorage.cart){
+			userId = Session.user.id;
+			cart = localStorage.cart;
+			$scope.cartArray = CartFactory.cartToArray(cart);
+			if ($scope.cartArray){
+				$scope.itemNums = $scope.cartArray.length;
+			}
 
-		CartFactory.sendCart(userId, $scope.cartArray)
-		.then(function(){
-			return CartFactory.getProducts($scope.cartArray);
-		})
-		.then(function(names){
-			$scope.products = names;
-			return $scope.products;
-		})
-		.then(function(products){
-			$scope.obj = CartFactory.getProductObj(products);
-			$scope.totalCents = CartFactory.getTotalCents($scope.obj);
-		})
+			CartFactory.sendCart(userId, $scope.cartArray)
+			.then(function(){
+				return CartFactory.getProducts($scope.cartArray);
+			})
+			.then(function(names){
+				$scope.products = names;
+				return $scope.products;
+			})
+			.then(function(products){
+				$scope.obj = CartFactory.getProductObj(products);
+				$scope.totalCents = CartFactory.getTotalCents($scope.obj);
+			})
+		}
 	}
 
 	else if (localStorage.cart === undefined){
-		cart = localStorage.getItem('cart') || null;
-		$scope.cartArray = CartFactory.cartToArray(cart);
+		cart = null;
+		$scope.cartArray = null;
 		$scope.itemNums = 0;
 	}
 
 	else {
-		cart = localStorage.getItem('cart') || null;
-		$scope.cartArray = CartFactory.cartToArray(cart);
-		$scope.itemNums = $scope.cartArray.length;
+		cart = localStorage.getItem('cart');
+		console.log(cart);
+		if (cart !== 'null'){
+			console.log('MADE IT');
+			$scope.cartArray = CartFactory.cartToArray(cart);
+			$scope.itemNums = $scope.cartArray.length;
 
-		CartFactory.getProducts($scope.cartArray)
-		.then(function(names){
-			$scope.products = names;
-			return $scope.products;
-		})
-		.then(function(products){
-			$scope.obj = CartFactory.getProductObj(products);
-			$scope.totalCents = CartFactory.getTotalCents($scope.obj);
-		})
+			CartFactory.getProducts($scope.cartArray)
+			.then(function(names){
+				$scope.products = names;
+				return $scope.products;
+			})
+			.then(function(products){
+				$scope.obj = CartFactory.getProductObj(products);
+				$scope.totalCents = CartFactory.getTotalCents($scope.obj);
+			})
+		}
 	}
 
 })
@@ -90,26 +98,6 @@ app.factory('CartFactory', function($http, $q){
 		return strCart;
 	};
 
-	// CartFactory.getProductNames = function(userId, cartArray){
-
- //        return $http.post('/api/user/' + userId + '/cart', cartArray)
- //        .then(function(){
-
-	// 		let promises = [];
-	// 		cartArray.forEach(function(ele){
-	// 			promises.push($http.get('/api/tears/' + ele));
-	// 		});
-
-	// 		return $q.all(promises);
- //        })
- //        .then(function(products){
-	// 		products = products.map(function(product){
-	// 			return [product.data.title, product.data.price];
-	// 		});
-
-	// 		return products;
- //        });
-	// }
 
 	CartFactory.getProducts = function(cartArray){
 
