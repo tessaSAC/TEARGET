@@ -36,6 +36,7 @@ module.exports = function (app, db) {
             return User.create(user)
             .then(function(user2){
 
+
                 return user2.addCart(cart);
             })
 
@@ -64,13 +65,15 @@ module.exports = function (app, db) {
                 // console.log("THIS IS LSOTRAGE", localStorage);
                 if (loginErr) return next(loginErr);
                 res.status(200).send({
-                    user: user.sanitize()
+                    user: user.sanitize(),
+                    sessionId: req.session.id
                 });
             });
 
         };
 
         passport.authenticate('local', authCb)(req, res, next);
+        // console.log(req.session.sid);
 
     });
 
@@ -90,6 +93,7 @@ module.exports = function (app, db) {
             else {
                 user = req.body;
                 makeUser(user)
+
                 .then(function(user2){
                         req.logIn(user2, function (loginErr) {
                         if (loginErr) return next(loginErr);
@@ -102,7 +106,6 @@ module.exports = function (app, db) {
 
         } // auth
 
-        // console.log("THIS IS THE SIGNUP STUFF", req.body);
         passport.authenticate('local', authCb)(req, res, next);
 
     });

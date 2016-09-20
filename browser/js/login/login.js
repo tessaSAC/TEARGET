@@ -18,24 +18,18 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $http, Sessio
 
         $scope.error = null;
 
-        AuthService.login(loginInfo).then(function () {
+        AuthService.login(loginInfo)
+        .then(function () {
+            return $http.get('/api/user/' + Session.user.id + '/cart')
+        })
+        .then(function(cart){
+            localStorage.setItem('cart', cart.data[0].array);
             $state.go('home');
         })
         .catch(function () {
             $scope.error = 'Invalid login credentials.';
         });
 
-            localStorage.setItem('DOG', '' + Session.user);
     };
-
-    // localStorage.setItem('DOG', '' + Session.user);
-
-    // let userID = $cookie.get(sid);
-    // alert(userID);
-    // $http.get('/cart/?user=' + userID)
-    // .then(function(cart){
-    //     if (cart) angular.copy(cart.data, localStorage);
-    //     return localStorage;
-    // })
 
 });

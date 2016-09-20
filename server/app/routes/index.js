@@ -1,8 +1,10 @@
 'use strict';
 var router = require('express').Router(); // eslint-disable-line new-cap
-var session = require('express-session');
-var bodyParser = require('body-parser');
+// var session = require('express-session');
+// var bodyParser = require('body-parser');
 module.exports = router;
+
+//THESE are already defined & used for us in the parsing-middleware.js
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());

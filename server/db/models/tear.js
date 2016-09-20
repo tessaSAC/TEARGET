@@ -8,11 +8,15 @@ module.exports = db.define('tear', {
     // description: {
     //     type: Sequelize.STRING
     // },
-    state: {
+    pictureUrl: {
         type: Sequelize.STRING
     },
+
+    state: {
+        type: Sequelize.ENUM('happy', 'sad', 'angry')
+    },
     organic: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
     },
     amount_left: {
         type: Sequelize.INTEGER
@@ -24,10 +28,21 @@ module.exports = db.define('tear', {
         type: Sequelize.DECIMAL
     }
 }, {
-    instanceMethods: {
-        discription: function(){
-            return this.state + ' ' + this.organic + 'tears';
+
+
+    getterMethods: {
+        description: function(){
+            if (this.organic){
+                let natural = 'organic'
+                return (this.state + ' ' + natural + ' tears');
+            }
+            return (this.state + ' ' + 'tears');
         }
+    },
+
+    // 
+    instanceMethods: {
+        
     },
     classMethods: {
 

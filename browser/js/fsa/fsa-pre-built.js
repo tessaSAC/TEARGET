@@ -52,11 +52,12 @@
 
         function onSuccessfulLogin(response) {
             var user = response.data.user;
-            Session.create(user);
+            var sessionId = response.data.sessionId;
+            Session.create(user, sessionId);
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             return user;
         }
-
+                                    
         // Uses the session factory to see if an
         // authenticated user is currently registered.
         this.isAuthenticated = function () {
@@ -116,13 +117,16 @@
         });
 
         this.user = null;
+        this.id = null;
 
-        this.create = function (user) {
+        this.create = function (user, id) {
             this.user = user;
+            this.id = id;
         };
 
         this.destroy = function () {
             this.user = null;
+            this.id = null;
         };
 
     });
