@@ -96,31 +96,58 @@ var seedTears = function () {
 
     var tears = [
         {
-            title: 'Tears1',
+            title: 'Clexadia',
             state: 'sad',
             organic: false,
             amount_left: 2,
-            price: 2,
+            price: 0.20,
             size: 1,
             manId: 2
         },
         {
-            title: 'Tears2',
+            title: 'Veoienice',
             state: 'happy',
             organic: true,
             amount_left: 223,
-            price: 12,
+            price: 0.82,
             size: 551,
             manId: 3
         },
         {
-            title: 'Tears3',
+            title: 'Phireto',
             state: 'angry',
             organic: true,
             amount_left: 4,
-            price: 21,
+            price: 0.21,
             size: 7,
             manId: 1
+        },
+        {
+            title: 'Ieadia',
+            state: 'happy',
+            organic: false,
+            amount_left: 5,
+            price: 0.32,
+            size: 15,
+            manId: 4
+        },
+        {
+            title: 'Paoypedo',
+            state: 'sad',
+            organic: true,
+            amount_left: 10,
+            price: .50,
+            size: 10,
+            manId: 1
+        },
+        {
+            title: 'Keormodia',
+            state: 'angry',
+            organic: false,
+            amount_left: 8,
+            price: .75,
+            size: 50,
+            manId: 3
         }
     ];
 
