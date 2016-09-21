@@ -16,5 +16,5 @@ app.controller('EmotionCtrl', function($scope, products){
 });
 
 app.controller('BarCtrl', function($scope){
-    console.log($scope.selected);
+    // console.log($scope.selected);
 })
