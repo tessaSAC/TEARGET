@@ -1,0 +1,25 @@
+<div class="col-xs-12">	
+	<form>
+	<div class="caption">
+	  <div class="form-group">
+		<div class="form-group">
+		  	<label for="stars-rating">Stars:</label>
+		  	<select class="form-control" id="stars-rating" ng-model="review.rating">
+		    <option>1</option>
+		    <option>2</option>
+		    <option>3</option>
+		    <option>4</option>
+		    <option>5</option>
+		  	</select>
+		</div>
+	  </div>
+	  <div class="form-group">
+	    <label for="review-text">Text</label>
+	    <input type="text" class="form-control" id="review-text" ng-model="review.text">
+	  </div>
+	  <button ng-click="postReview(product.id, review)" class="btn btn-default">Submit</button>
+	  <br><br>
+	</div>
+	</form>
+</div>
+

@@ -10,17 +10,20 @@
                     <small>{{ product.description }}</small><br>
                     <small>Size: {{ product.size }}ml</small><br>
                     <small>Price: {{ product.price | currency }}</small><br>
-                    <button class="btn btn-default">Add a Review</button>
+                    <button ui-sref="product.review" class="btn btn-default">Add a Review</button>
                     <button ng-click="addItemToCart(product.id)" class="btn btn-default">Add to Cart</button>
                 </div>
             </div>
         </div>
+        <ui-view></ui-view>
         <div class="col-xs-12">
             <div class = "thumbnail">
             <div class = "caption">
                 <p>Reviews:</p>
                 <span ng-show = "product.reviews.length == 0">This product has no reviews!</span>
-                <span ng-repeat= "review in product.reviews">{{ review.text }}<br> </span>
+                <span ng-repeat= "review in product.reviews">
+                {{review.updatedAt | date }} --- {{review.rating}} of 5 Stars.<br>
+                {{ review.text }}<br><br> </span>
             <div>
             </div>
         </div>

@@ -85,8 +85,8 @@ var seedMen = function () {
         },
         {
             name: 'Roscoe',
-            bio: "Roscoe loves providing tears for Tearget. Some of his favorite pastimes are cooking, football and pogs.",
-            pictureUrl: "https://static.pexels.com/photos/1543/landscape-nature-man-person-medium.jpg"
+            bio: 'Roscoe loves providing tears for Tearget. Some of his favorite pastimes are cooking, football and pogs.',
+            pictureUrl: 'https://static.pexels.com/photos/1543/landscape-nature-man-person-medium.jpg'
         },
         {
             name: 'Guy',
@@ -112,6 +112,7 @@ var seedMen = function () {
             name: 'Geoff',
             bio: 'Geoff is a kind and gentle giant who cries softly when he remembers we have yet to achieve world peace.',
             pictureUrl: '/assets/600men/Geoff600.png'
+
         }
     ];
 
@@ -287,15 +288,15 @@ var seedReview = function(){
 var seedShpping = function(){
     var shipping = [
         {
-            name: "Rachel Addleman",
-            address: "209 West 108 Street",
+            name: 'Rachel Addleman',
+            address: '209 West 108 Street',
             city: 'New York',
             state: 'NY',
             zip: 10025,
             userId: 3
         }
     ]
-    var creatingShipping= review.map(function (createShipping){
+    var creatingShipping = review.map(function (createShipping){
         return Shipping.create(createShipping)
     });
     return Promise.all(creatingShipping);
