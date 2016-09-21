@@ -6,8 +6,16 @@ let Tear = db.model('tear');
 let Man = db.model('man');
 let Review = db.model('review');
 
-// api/tears
-// api/tears/?state=sad
+
+router.post('/:id/reviews/', function(request, response, next){
+
+    request.body.tearId = request.params.id;
+    Review.create(request.body)
+    .then(function(review){
+        response.status(200).send(review);
+    });
+
+})
 
 router.get('/', function(request, response, next){
     var reqState = request.query.state;
@@ -55,7 +63,6 @@ router.param('id', function(request, response, next, id){
         {model: Review}
     ]})
         .then(function(tear) {
-            console.log('IN ID', tear)
             if (!tear) response.status(404).send();
             request.tearById = tear;
             next();
@@ -78,3 +85,5 @@ router.delete('/:id', function(request, response, next){
     })
     .catch(next)
 })
+
+
