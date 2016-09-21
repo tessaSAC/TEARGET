@@ -91,7 +91,28 @@ var seedMen = function () {
         {
             name: 'Guy',
             bio: 'Guy is a shy man who has recently begun providing tears for us.  He enjoys puppies, sailing and bow ties.',
-            pictureUrl: 'https://static.pexels.com/photos/1702/bow-tie-businessman-fashion-man-medium.jpg'
+            pictureUrl: "https://static.pexels.com/photos/1702/bow-tie-businessman-fashion-man-medium.jpg"
+        },
+        {
+            name: 'Gabe',
+            bio: 'Enjoys making and pontificating upon Japanese swords. Being asked if he likes samurai makes him cry.',
+            pictureUrl: '/assets/600men/Gabe600.png'
+        },
+        {
+            name: 'Jason',
+            bio: 'Jason is so passionate about teaching that he sheds tears of mirth whenever he gets a help ticket.',
+            pictureUrl: '/assets/600men/Jason600.png'
+        },
+        {
+            name: 'Wes',
+            bio: 'Our most affordable tear and a great starting point for your collection. Wes cries prodigiously when he watches Korean dramas and listens to Korean pop music, which he does nightly.',
+            pictureUrl: '/assets/600men/Wes600.png'
+        },
+        {
+            name: 'Geoff',
+            bio: 'Geoff is a kind and gentle giant who cries softly when he remembers we have yet to achieve world peace.',
+            pictureUrl: '/assets/600men/Geoff600.png'
+
         }
     ];
 
@@ -114,7 +135,8 @@ var seedTears = function () {
             amount_left: 2,
             price: 0.20,
             size: 1,
-            manId: 2
+            manId: 2,
+            pictureUrl: '/assets/600tears/tear1.png',
         },
         {
             title: 'Veoienice',
@@ -123,7 +145,8 @@ var seedTears = function () {
             amount_left: 223,
             price: 0.82,
             size: 551,
-            manId: 3
+            manId: 3,
+            pictureUrl: '/assets/600tears/tear2.png',
         },
         {
             title: 'Phireto',
@@ -132,7 +155,8 @@ var seedTears = function () {
             amount_left: 4,
             price: 0.21,
             size: 7,
-            manId: 1
+            manId: 1,
+            pictureUrl: '/assets/600tears/tear3.png',
         },
         {
             title: 'Ieadia',
@@ -141,7 +165,8 @@ var seedTears = function () {
             amount_left: 5,
             price: 0.32,
             size: 15,
-            manId: 4
+            manId: 4,
+            pictureUrl: '/assets/600tears/tear4.png',
         },
         {
             title: 'Paoypedo',
@@ -150,7 +175,8 @@ var seedTears = function () {
             amount_left: 10,
             price: 0.50,
             size: 10,
-            manId: 1
+            manId: 1,
+            pictureUrl: '/assets/600tears/tear5.png',
         },
         {
             title: 'Keormodia',
@@ -159,7 +185,8 @@ var seedTears = function () {
             amount_left: 8,
             price: 0.75,
             size: 50,
-            manId: 3
+            manId: 3,
+            pictureUrl: '/assets/600tears/tear6.png',
         },
         {
             title: 'Claepyle',
@@ -168,7 +195,8 @@ var seedTears = function () {
             amount_left: 4,
             price: 0.25,
             size: 5,
-            manId: 6
+            manId: 6,
+            pictureUrl: '/assets/600tears/tear7.png',
         },
         {
             title: 'Oekireto',
@@ -177,7 +205,8 @@ var seedTears = function () {
             amount_left: 2,
             price: 0.30,
             size: 6,
-            manId: 5
+            manId: 5,
+            pictureUrl: '/assets/600tears/tear8.png',
         },
         {
             title: 'Smaociliope',
@@ -186,7 +215,8 @@ var seedTears = function () {
             amount_left: 10,
             price: 0.40,
             size: 34,
-            manId: 3
+            manId: 3,
+            pictureUrl: '/assets/600tears/tear9.png',
         },
         {
             title: 'Tusleia',
@@ -195,7 +225,8 @@ var seedTears = function () {
             amount_left: 2,
             price: 0.99,
             size: 40,
-            manId: 2
+            manId: 2,
+            pictureUrl: '/assets/600tears/tear10.png',
         }
 
     ];
