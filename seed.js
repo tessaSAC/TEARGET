@@ -163,7 +163,7 @@ var seedTears = function () {
             state: 'sad',
             organic: false,
             amount_left: 5,
-            price: 3.92,
+            price: 3.91,
             size: 15,
             manId: 4,
             pictureUrl: '/assets/600tears/tear4.png',
