@@ -66,32 +66,32 @@ var seedMen = function () {
         {
             name: 'Nick',
             bio: 'Nick likes to cry for money.  His hobbies include backpacking, scuba diving and spinning yarn',
-            pictureUrl: 'https://www.placecage.com/g/155/300'
+            pictureUrl: '/assets/600men/Nick600.png'
         },
         {
             name: 'Obama',
             bio: 'POTUS. Enjoys hula hooping with FLOTUS and walking Bo.',
-            pictureUrl: 'http://ifreestockphotos.com/wp-content/uploads/2016/05/barack-obama-free-stock-photos-768x960.jpg'
+            pictureUrl: '/assets/600men/Obama600.png'
         },
         {
             name: 'Ben',
             bio: 'Might be a dog. Woof!',
-            pictureUrl: 'https://static.pexels.com/photos/91224/pexels-photo-91224-medium.jpeg'
+            pictureUrl: '/assets/600men/Ben600.png'
         },
         {
             name: 'Steven',
             bio: 'Tall, enjoys sappy movies, cutting onions and raising alpacas.',
-            pictureUrl: 'http://www.stevensegallery.com/g/140/100'
+            pictureUrl: '/assets/600men/Steven600.png'
         },
         {
             name: 'Roscoe',
             bio: "Roscoe loves providing tears for Tearget. Some of his favorite pastimes are cooking, football and pogs.",
-            pictureUrl: "https://static.pexels.com/photos/1543/landscape-nature-man-person-medium.jpg"
+            pictureUrl: "/assets/600men/Roscoe600.png"
         },
         {
             name: 'Guy',
             bio: 'Guy is a shy man who has recently begun providing tears for us.  He enjoys puppies, sailing and bow ties.',
-            pictureUrl: "https://static.pexels.com/photos/1702/bow-tie-businessman-fashion-man-medium.jpg"
+            pictureUrl: "/assets/600men/Guy600.png"
         },
         {
             name: 'Gabe',
