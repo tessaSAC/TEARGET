@@ -25,7 +25,7 @@ var Men = db.model('man');
 var Tears = db.model('tear');
 var Cart = db.model('cart');
 var Review = db.model('review');
-var Shipping = db.model('shipping')
+var Shipping = db.model('shipping');
 
 var Promise = require('sequelize').Promise;
 
@@ -112,6 +112,7 @@ var seedMen = function () {
             name: 'Geoff',
             bio: 'Geoff is a kind and gentle giant who cries softly when he remembers we have yet to achieve world peace.',
             pictureUrl: '/assets/600men/Geoff600.png'
+
         }
     ];
 
@@ -132,7 +133,7 @@ var seedTears = function () {
             state: 'sad',
             organic: false,
             amount_left: 2,
-            price: 0.20,
+            price: 3.27,
             size: 1,
             manId: 2,
             pictureUrl: '/assets/600tears/tear1.png',
@@ -142,7 +143,7 @@ var seedTears = function () {
             state: 'happy',
             organic: true,
             amount_left: 223,
-            price: 0.82,
+            price: 7.82,
             size: 551,
             manId: 3,
             pictureUrl: '/assets/600tears/tear2.png',
@@ -152,7 +153,7 @@ var seedTears = function () {
             state: 'angry',
             organic: true,
             amount_left: 4,
-            price: 0.21,
+            price: 6.21,
             size: 7,
             manId: 1,
             pictureUrl: '/assets/600tears/tear3.png',
@@ -162,7 +163,7 @@ var seedTears = function () {
             state: 'sad',
             organic: false,
             amount_left: 5,
-            price: 0.32,
+            price: 3.92,
             size: 15,
             manId: 4,
             pictureUrl: '/assets/600tears/tear4.png',
@@ -172,7 +173,7 @@ var seedTears = function () {
             state: 'sad',
             organic: true,
             amount_left: 10,
-            price: 0.50,
+            price: 7.99,
             size: 10,
             manId: 1,
             pictureUrl: '/assets/600tears/tear5.png',
@@ -182,7 +183,7 @@ var seedTears = function () {
             state: 'angry',
             organic: false,
             amount_left: 8,
-            price: 0.75,
+            price: 4.75,
             size: 50,
             manId: 3,
             pictureUrl: '/assets/600tears/tear6.png',
@@ -192,7 +193,7 @@ var seedTears = function () {
             state: 'angry',
             organic: false,
             amount_left: 4,
-            price: 0.25,
+            price: 2.25,
             size: 5,
             manId: 6,
             pictureUrl: '/assets/600tears/tear7.png',
@@ -202,7 +203,7 @@ var seedTears = function () {
             state: 'sad',
             organic: true,
             amount_left: 2,
-            price: 0.30,
+            price: 6.30,
             size: 6,
             manId: 5,
             pictureUrl: '/assets/600tears/tear8.png',
@@ -212,7 +213,7 @@ var seedTears = function () {
             state: 'angry',
             organic: false,
             amount_left: 10,
-            price: 0.40,
+            price: 2.40,
             size: 34,
             manId: 3,
             pictureUrl: '/assets/600tears/tear9.png',
@@ -222,12 +223,70 @@ var seedTears = function () {
             state: 'happy',
             organic: true,
             amount_left: 2,
-            price: 0.99,
+            price: 11.99,
             size: 40,
             manId: 2,
             pictureUrl: '/assets/600tears/tear10.png',
+        },
+        {
+            title: 'Tamahagane',
+            state: 'sad',
+            organic: true,
+            amount_left: 5,
+            price: 12.27,
+            size: 67,
+            manId: 7,
+            pictureUrl: '/assets/600tears/tear11.png',
+        },
+        {
+            title: 'Masamune',
+            state: 'happy',
+            organic: false,
+            amount_left: 1,
+            price: 4.25,
+            size: 25,
+            manId: 7,
+            pictureUrl: '/assets/600tears/tear12.png',
+        },        {
+            title: 'Sobmoji',
+            state: 'happy',
+            organic: true,
+            amount_left: 10,
+            price: 11.27,
+            size: 26,
+            manId: 8,
+            pictureUrl: '/assets/600tears/tear13.png',
+        },
+        {
+            title: 'Wowersatz',
+            state: 'sad',
+            organic: true,
+            amount_left: 621,
+            price: 2.07,
+            size: 100,
+            manId: 9,
+            pictureUrl: '/assets/600tears/tear14.png',
+        },
+        {
+            title: 'Magnanifica',
+            state: 'sad',
+            organic: true,
+            amount_left: 15,
+            price: 12,
+            size: 57,
+            manId: 10,
+            pictureUrl: '/assets/600tears/tear15.png',
+        },
+        {
+            title: 'Smizer',
+            state: 'happy',
+            organic: true,
+            amount_left: 1,
+            price: 15.99,
+            size: 24,
+            manId: 10,
+            pictureUrl: '/assets/600tears/tear16.png',
         }
-
     ];
 
     var creatingTears = tears.map(function (userObj) {
@@ -287,15 +346,15 @@ var seedReview = function(){
 var seedShpping = function(){
     var shipping = [
         {
-            name: "Rachel Addleman",
-            address: "209 West 108 Street",
+            name: 'Rachel Addleman',
+            address: '209 West 108 Street',
             city: 'New York',
             state: 'NY',
             zip: 10025,
             userId: 3
         }
     ]
-    var creatingShipping= review.map(function (createShipping){
+    var creatingShipping = review.map(function (createShipping){
         return Shipping.create(createShipping)
     });
     return Promise.all(creatingShipping);
